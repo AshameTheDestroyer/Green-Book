@@ -1,0 +1,186 @@
+:root {
+  --main-colour: #00ff6a;
+  --main-darker-colour: #08a84b;
+  --vibrant-colour: #ffffff;
+  --background-colour: #eeeeee;
+  --background-darker-colour: #cfcfcf;
+  --fore-colour: #111111;
+  --fore-darker-colour: #1d1d1d;
+  --required-colour: orangered;
+  --transparent-colour-quarter: hsl(0, 0%, 0%, 25%);
+  --transparent-colour-half: hsl(0, 0%, 0%, 50%);
+  --transparent-colour-three-quarter: hsl(0, 0%, 0%, 75%);
+  --box-shadow-thickness: 1px;
+  --box-shadow-blurriness: 5px;
+  --box-shadow:
+      calc(+1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-quarter),
+      calc(-1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-quarter),
+      calc(+1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-quarter),
+      calc(-1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-quarter);
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  color: var(--fore-colour);
+  background-color: var(--background-colour);
+}
+body > main#root {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+body > main#root > main {
+  flex-grow: 1;
+  padding: 4rem;
+}
+
+button,
+input {
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  border: none;
+}
+button:is(button),
+input:is(button) {
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  background-color: var(--background-colour);
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  transition: transform 250ms, filter 250ms;
+}
+button:is(button):is(:hover, :focus-visible):not(:disabled),
+input:is(button):is(:hover, :focus-visible):not(:disabled) {
+  transform: scale(1.01);
+  filter: brightness(120%);
+}
+button:is(button):is(.emphasized, [type=submit]),
+input:is(button):is(.emphasized, [type=submit]) {
+  font-weight: bold;
+  color: var(--vibrant-colour);
+  background-color: var(--main-colour);
+}
+button:is(button):disabled,
+input:is(button):disabled {
+  cursor: auto;
+  filter: contrast(50%);
+}
+button:is(input),
+input:is(input) {
+  padding-block: 0.5rem;
+  background-color: transparent;
+  accent-color: var(--main-colour);
+  border-bottom: 2px solid var(--fore-darker-colour);
+}
+button:is(input):is([type=checkbox], [type=radio]),
+input:is(input):is([type=checkbox], [type=radio]) {
+  cursor: pointer;
+}
+
+.button-displayer {
+  --grid-repeat: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-repeat, 1), 1fr);
+  gap: 2rem;
+  padding: 1rem;
+}
+.button-displayer[data-grid-repeat="1"] {
+  --grid-repeat: 1;
+}
+.button-displayer[data-grid-repeat="2"] {
+  --grid-repeat: 2;
+}
+.button-displayer[data-grid-repeat="3"] {
+  --grid-repeat: 3;
+}
+.button-displayer[data-grid-repeat="4"] {
+  --grid-repeat: 4;
+}
+.button-displayer[data-grid-repeat="5"] {
+  --grid-repeat: 5;
+}
+.button-displayer[data-grid-repeat="6"] {
+  --grid-repeat: 6;
+}
+.button-displayer[data-grid-repeat="7"] {
+  --grid-repeat: 7;
+}
+.button-displayer[data-grid-repeat="8"] {
+  --grid-repeat: 8;
+}
+.button-displayer[data-grid-repeat="9"] {
+  --grid-repeat: 9;
+}
+.button-displayer[data-grid-repeat="10"] {
+  --grid-repeat: 10;
+}
+.button-displayer[data-grid-repeat="11"] {
+  --grid-repeat: 11;
+}
+.button-displayer[data-grid-repeat="12"] {
+  --grid-repeat: 12;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+h5 {
+  margin: 0;
+  padding: 0;
+}
+
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  --background-image: linear-gradient(180deg, var(--main-colour), var(--main-darker-colour));
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  color: var(--main-colour);
+  background-color: white;
+  background-image: var(--background-image);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+a::after {
+  content: "";
+  position: absolute;
+  top: auto;
+  bottom: -2px;
+  inset-inline: 0;
+  height: 2px;
+  background-image: var(--background-image);
+}
