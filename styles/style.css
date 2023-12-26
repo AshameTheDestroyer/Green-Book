@@ -1,5 +1,5 @@
 :root {
-  --main-colour: #00ff6a;
+  --main-colour: #00e25e;
   --main-darker-colour: #08a84b;
   --vibrant-colour: #ffffff;
   --background-colour: #eeeeee;
@@ -11,16 +11,15 @@
   --gray-darker-colour: #333333;
   --error-colour: red;
   --required-colour: orangered;
-  --transparent-colour-quarter: hsl(0, 0%, 0%, 75%);
-  --transparent-colour-half: hsl(0, 0%, 0%, 50%);
-  --transparent-colour-three-quarter: hsl(0, 0%, 0%, 25%);
+  --quarter-transparent-colour: hsl(0, 0%, 0%, 75%);
+  --half-transparent-colour: hsl(0, 0%, 0%, 50%);
+  --three-quarter-transparent-colour: hsl(0, 0%, 0%, 25%);
   --box-shadow-thickness: 1px;
   --box-shadow-blurriness: 5px;
-  --box-shadow:
-      calc(+1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-three-quarter),
-      calc(-1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-three-quarter),
-      calc(+1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-three-quarter),
-      calc(-1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-three-quarter);
+  --box-shadow: calc(+1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarter-transparent-colour),
+      calc(-1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarter-transparent-colour),
+      calc(+1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarter-transparent-colour),
+      calc(-1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarter-transparent-colour);
   font-size: 62.5%;
 }
 
@@ -59,8 +58,8 @@ input:is(button) {
   cursor: pointer;
   transition: transform 250ms, filter 250ms;
 }
-button:is(button):not(.simple),
-input:is(button):not(.simple) {
+button:is(button):not(.simple-button),
+input:is(button):not(.simple-button) {
   box-shadow: var(--box-shadow);
   background-color: var(--background-colour);
 }
@@ -69,8 +68,8 @@ input:is(button):is(:hover, :focus-visible):not(:disabled) {
   transform: scale(1.05);
   filter: brightness(120%);
 }
-button:is(button):is(.emphasized, [type=submit]),
-input:is(button):is(.emphasized, [type=submit]) {
+button:is(button):is(.emphasized-button, [type=submit]),
+input:is(button):is(.emphasized-button, [type=submit]) {
   font-weight: bold;
   color: var(--vibrant-colour);
   background-color: var(--main-colour);
@@ -79,6 +78,15 @@ button:is(button):disabled,
 input:is(button):disabled {
   cursor: auto;
   filter: contrast(50%);
+}
+button:is(button).icon-button,
+input:is(button).icon-button {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  padding: 1rem;
 }
 button:is(input),
 input:is(input) {
@@ -166,12 +174,16 @@ h6 {
   padding: 0;
 }
 
-p {
+p,
+figure {
   margin: 0;
 }
 
-a {
-  --background-image: linear-gradient(180deg, var(--main-colour), var(--main-darker-colour));
+.colourized-text,
+a:not(.uncolourized-text) {
+  --background-image: linear-gradient(180deg,
+          var(--main-colour) 50%,
+          var(--main-darker-colour));
   font-weight: bold;
   text-decoration: none;
   position: relative;
@@ -182,7 +194,26 @@ a {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-a::after {
+.colourized-text.stroked-text,
+a:not(.uncolourized-text).stroked-text {
+  -webkit-text-stroke-color: var(--main-darker-colour);
+  -webkit-text-stroke-width: 1px;
+}
+.colourized-text.stroked-text:is(a)::after,
+a:not(.uncolourized-text).stroked-text:is(a)::after {
+  border: 1px solid var(--main-darker-colour);
+}
+.colourized-text:is(a),
+a:not(.uncolourized-text):is(a) {
+  color: inherit;
+}
+.colourized-text:is(a):focus-visible,
+a:not(.uncolourized-text):is(a):focus-visible {
+  outline: 2px solid black;
+  border-radius: 2px;
+}
+.colourized-text:is(a):not(.undecorated-text)::after,
+a:not(.uncolourized-text):is(a):not(.undecorated-text)::after {
   content: "";
   position: absolute;
   top: auto;
@@ -190,4 +221,9 @@ a::after {
   inset-inline: 0;
   height: 2px;
   background-image: var(--background-image);
+}
+
+li,
+li > a {
+  display: block;
 }

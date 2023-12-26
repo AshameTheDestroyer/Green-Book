@@ -1,3 +1,0 @@
-<footer id="main-footer">
-
-</footer>

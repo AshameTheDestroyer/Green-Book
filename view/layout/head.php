@@ -21,10 +21,11 @@ if ($connection->connect_error) {
     <link rel="icon" type="image/svg+xml" href="" />
     <link rel="stylesheet" href="styles/style.css">
 
+    <script src="utils/create_portal.js" defer></script>
+    <script src="utils/fragment.js" defer></script>
+
     <title>Book Store</title>
 </head>
 
 <body>
-    <?php include_once("header.php") ?>
-
     <main id="root">

@@ -1,0 +1,47 @@
+#main-header {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+}
+#main-header > main {
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center space-around;
+  place-items: center space-around;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: var(--background-colour);
+}
+#main-header > main .button-displayer {
+  gap: 1.5rem;
+  padding: 0;
+}
+#main-header > nav {
+  background-color: var(--main-colour);
+}
+#main-header > nav > ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center space-around;
+  place-items: center space-around;
+  margin: 0;
+  padding: 0;
+}
+#main-header > nav > ul > li > a {
+  font-weight: bold;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  color: var(--background-colour);
+  background-color: var(--main-colour);
+  cursor: pointer;
+  transition: filter 250ms, padding 250ms;
+}
+#main-header > nav > ul > li > a::after {
+  content: none;
+}
+#main-header > nav > ul > li > a:is(:hover, :focus-visible) {
+  padding-inline: 4rem;
+  filter: brightness(120%);
+}

@@ -50,7 +50,7 @@
 .modal-background {
   position: fixed;
   inset: 0;
-  background-color: var(--transparent-colour-three-quarter);
+  background-color: var(--three-quarter-transparent-colour);
   z-index: 10;
   animation-name: modal-background-entrance;
   animation-duration: 400ms;

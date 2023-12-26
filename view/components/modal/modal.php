@@ -11,7 +11,7 @@ function modal(
         <div id=\"{$id}-modal-background\" class=\"modal-background\"></div>
         <div id=\"{$id}-modal\" class=\"modal\">
             <div class=\"modal-close-button-container\">
-                <button class=\"simple modal-close-button\" type=\"button\">X</button>
+                <button class=\"modal-close-button simple-button icon-button\" type=\"button\">X</button>
             </div>
 
             <h1>$title</h1>
