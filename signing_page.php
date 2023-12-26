@@ -1,8 +1,8 @@
+<?php include_once("./view/layout/head.php") ?>
+
 <?php include_once("./control/signing.php") ?>
 <?php include("./view/components/input_field/input_field.php") ?>
 <?php include("./view/components/modal/modal.php") ?>
-
-<script src="./view/pages/signing_page/signing_page.js" defer></script>
 
 <?php
 $signingMethod = filter_input(INPUT_GET, "signing_method", FILTER_SANITIZE_STRING);
@@ -16,6 +16,7 @@ $formAction = $_SERVER["PHP_SELF"] . "?signing_method=" . $signingMethod;
 $name_ = $name;
 ?>
 
+<script src="./view/pages/signing_page/signing_page.js" defer></script>
 <link rel="stylesheet" href="./view/pages/signing_page/signing_page.css">
 
 <main id="signing-page">
@@ -77,7 +78,7 @@ $name_ = $name;
                 <button type="submit">Submit</button>
             </section>
             <section>
-                <p>Already have an account? <a href="./?signing_method=signing_in">Sign in</a></p>
+                <p>Already have an account? <a href="?signing_method=signing_in">Sign in</a></p>
             </section>
         </form>
     <?php elseif ($signingMethod == "signing_in"): ?>
@@ -105,7 +106,7 @@ $name_ = $name;
                 <button type="submit">Submit</button>
             </section>
             <section>
-                <p>Doesn't have an account? <a href="./?signing_method=signing_up">Sign up</a></p>
+                <p>Doesn't have an account? <a href="?signing_method=signing_up">Sign up</a></p>
             </section>
         </form>
     <?php endif ?>
@@ -118,3 +119,5 @@ $name_ = $name;
         ) ?>
     <?php endif ?>
 </main>
+
+<?php include_once("./view/layout/foot.php") ?>
