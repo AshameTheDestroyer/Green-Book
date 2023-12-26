@@ -25,6 +25,14 @@
   color: inherit;
   pointer-events: auto;
 }
+.input-field > input:is(:focus, :not(:-moz-placeholder-shown)):invalid {
+  color: var(--error-colour);
+  border-color: var(--error-colour);
+}
+.input-field > input:is(:focus, :not(:placeholder-shown)):invalid {
+  color: var(--error-colour);
+  border-color: var(--error-colour);
+}
 .input-field[data-is-required] > label::after {
   content: "*";
   color: var(--required-colour);

@@ -29,28 +29,39 @@ $name_ = $name;
                     $title = "Name",
                     $type = "text",
                     $value = $name_,
+                    $pattern = "\$username\$",
                 ) ?>
                 <?= input_field(
                     $name = "surname",
                     $title = "Surname",
                     $type = "text",
                     $value = $surname,
+                    $pattern = "\$username\$",
+                    $patternMessage = NULL,
+                    $id = "surname",
+                    $optional = true,
                 ) ?>
                 <?= input_field(
                     $name = "email",
                     $title = "Email",
                     $type = "email",
                     $value = $email,
+                    $pattern = "\$mail\$",
                 ) ?>
                 <?= input_field(
                     $name = "password",
                     $title = "Password",
                     $type = "password",
+                    $value = NULL,
+                    $pattern = "\$password\$",
                 ) ?>
                 <?= input_field(
                     $name = "confirm-password",
                     $title = "Confirm Password",
                     $type = "password",
+                    $value = NULL,
+                    $pattern = NULL,
+                    $patternMessage = "Confirm password field should contain the same password as the above field.",
                 ) ?>
             </main>
             <section>
@@ -79,11 +90,14 @@ $name_ = $name;
                     $title = "Email",
                     $type = "email",
                     $value = $email,
+                    $pattern = "\$mail\$",
                 ) ?>
                 <?= input_field(
                     $name = "password",
                     $title = "Password",
                     $type = "password",
+                    $value = NULL,
+                    $pattern = "\$password\$",
                 ) ?>
             </main>
             <section class="button-displayer">

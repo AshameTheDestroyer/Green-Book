@@ -9,6 +9,7 @@
   --gray-lighter-colour: #999999;
   --gray-colour: #666666;
   --gray-darker-colour: #333333;
+  --error-colour: red;
   --required-colour: orangered;
   --transparent-colour-quarter: hsl(0, 0%, 0%, 75%);
   --transparent-colour-half: hsl(0, 0%, 0%, 50%);

@@ -19,13 +19,21 @@
         pointer-events: none;
     }
 
-    &>input:is(:focus, :not(:placeholder-shown))+label {
-        top: 0;
-        transform: translateY(-100%);
+    &>input:is(:focus, :not(:placeholder-shown)) {
 
-        color: inherit;
+        &+label {
+            top: 0;
+            transform: translateY(-100%);
 
-        pointer-events: auto;
+            color: inherit;
+
+            pointer-events: auto;
+        }
+
+        &:invalid {
+            color: var(--error-colour);
+            border-color: var(--error-colour);
+        }
     }
 
     &[data-is-required]>label::after {

@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="./view/components/input_field/input_field.css">
+<script src="./view/components/input_field/input_field.js" type="module" defer></script>
 
 <?php
 function input_field(
@@ -6,6 +7,8 @@ function input_field(
     string $title = null,
     string $type = "text",
     string $value = null,
+    string $pattern = null,
+    string $patternMessage = null,
     string $id = null,
     bool $optional = false,
 ) {
@@ -16,7 +19,7 @@ function input_field(
 
     echo "
         <div id=\"{$id}-input-field\" class=\"input-field\" $dataIsRequired>
-            <input id=\"{$id}-input\" name=$name type=\"$type\" placeholder=\" \" value=\"$value\" $required />
+            <input id=\"{$id}-input\" name=$name type=\"$type\" placeholder=\" \" value=\"$value\" pattern=\"$pattern\" title=\"$patternMessage\" $required />
             <label for=\"{$id}-input\">$title</label>
         </div>
     ";
