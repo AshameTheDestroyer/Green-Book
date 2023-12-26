@@ -16,10 +16,10 @@
   --box-shadow-thickness: 1px;
   --box-shadow-blurriness: 5px;
   --box-shadow:
-      calc(+1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-quarter),
-      calc(-1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-quarter),
-      calc(+1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-quarter),
-      calc(-1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-quarter);
+      calc(+1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-three-quarter),
+      calc(-1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-three-quarter),
+      calc(+1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-three-quarter),
+      calc(-1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--transparent-colour-three-quarter);
   font-size: 62.5%;
 }
 
