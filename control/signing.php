@@ -1,23 +1,37 @@
 <?php
-$signing_up = filter_input(INPUT_POST, "signing_up", FILTER_SANITIZE_STRING);
-$signing_in = filter_input(INPUT_POST, "signing_in", FILTER_SANITIZE_STRING);
+$signingUp = filter_input(INPUT_POST, "signing_up", FILTER_SANITIZE_STRING);
+$signingIn = filter_input(INPUT_POST, "signing_in", FILTER_SANITIZE_STRING);
 
-if ($signing_up) {
+if ($signingUp) {
     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
     $surname = filter_input(INPUT_POST, "surname", FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
+
+    $email = strtolower($email);
+    $password = sha1($password);
 
     try {
-        $query = "INSERT INTO users(name, surname, email) VALUES ('$name', '$surname', '$email')";
+        $query = "INSERT INTO users(name, surname, email, password) VALUES ('$name', '$surname', '$email', '$password')";
         $connection->execute_query($query);
     } catch (mysqli_sql_exception $e) {
-        echo $e->getMessage();
+        $signingError = "Duplicate Email";
+        $signingErrorMessage = "Email already exists, either sign in or pick another one.";
     }
-} else if ($signing_in) {
+} else if ($signingIn) {
     $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 
-    $query = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
+    $email = strtolower($email);
+    $password = sha1($password);
+
+    $query = "SELECT * FROM users WHERE email = '$email' AND password = '$password' LIMIT 1";
     $result = $connection->execute_query($query);
-    var_dump($result->fetch_all()[0]);
+    $user = $result->fetch_all()[0];
+
+    if ($user == NULL) {
+        $signingError = "Login Failed";
+        $signingErrorMessage = "Either email or password is incorrect.";
+    }
 }
 ?>

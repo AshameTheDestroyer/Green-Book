@@ -12,7 +12,9 @@
         left: 0;
         transform: translateY(-50%);
 
-        transition: inset 250ms, transform 250ms;
+        color: var(--gray-colour);
+
+        transition: inset 250ms, transform 250ms, color 250ms;
 
         pointer-events: none;
     }
@@ -20,6 +22,8 @@
     &>input:is(:focus, :not(:placeholder-shown))+label {
         top: 0;
         transform: translateY(-100%);
+
+        color: inherit;
 
         pointer-events: auto;
     }

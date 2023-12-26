@@ -3,10 +3,10 @@
 <?php
 function input_field(
     string $name,
-    string $id = null,
     string $title = null,
-    string $value = null,
     string $type = "text",
+    string $value = null,
+    string $id = null,
     bool $optional = false,
 ) {
     $title ??= $name;
@@ -16,7 +16,7 @@ function input_field(
 
     echo "
         <div id=\"{$id}-input-field\" class=\"input-field\" $dataIsRequired>
-            <input id=\"{$id}-input\" type=\"$type\" placeholder=\" \" value=\"$value\" $required />
+            <input id=\"{$id}-input\" name=$name type=\"$type\" placeholder=\" \" value=\"$value\" $required />
             <label for=\"{$id}-input\">$title</label>
         </div>
     ";

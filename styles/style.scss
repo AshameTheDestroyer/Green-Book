@@ -6,12 +6,15 @@
     --background-darker-colour: #cfcfcf;
     --fore-colour: #111111;
     --fore-darker-colour: #1d1d1d;
+    --gray-lighter-colour: #999999;
+    --gray-colour: #666666;
+    --gray-darker-colour: #333333;
 
     --required-colour: orangered;
 
-    --transparent-colour-quarter: hsl(0, 0%, 0%, 25%);
+    --transparent-colour-quarter: hsl(0, 0%, 0%, 75%);
     --transparent-colour-half: hsl(0, 0%, 0%, 50%);
-    --transparent-colour-three-quarter: hsl(0, 0%, 0%, 75%);
+    --transparent-colour-three-quarter: hsl(0, 0%, 0%, 25%);
 
     --box-shadow-thickness: 1px;
     --box-shadow-blurriness: 5px;
@@ -64,15 +67,18 @@ input {
         padding: 1rem 2rem;
 
         border-radius: 1rem;
-        background-color: var(--background-colour);
-        box-shadow: var(--box-shadow);
 
         cursor: pointer;
 
         transition: transform 250ms, filter 250ms;
 
+        &:not(.simple) {
+            box-shadow: var(--box-shadow);
+            background-color: var(--background-colour);
+        }
+
         &:is(:hover, :focus-visible):not(:disabled) {
-            transform: scale(1.01);
+            transform: scale(1.05);
 
             filter: brightness(120%);
         }
