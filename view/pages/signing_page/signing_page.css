@@ -6,12 +6,20 @@
   gap: 2rem;
 }
 #signing-page > form {
+  --padding: 4rem;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 4rem;
+  padding: var(--padding);
   border-radius: 1rem;
   box-shadow: var(--box-shadow);
+}
+#signing-page > form #signing-form-close-button {
+  --size: 2.5rem;
+  position: absolute;
+  top: calc(var(--padding) / 2);
+  right: calc(var(--padding) / 2);
 }
 #signing-page > form > h1 {
   font-size: 2.4rem;

@@ -15,7 +15,7 @@ function SetUpModals() {
             modalBackgroundId = modalId.replace("modal", "modal-background"),
             modalBackground = document.querySelector(`#${modalBackgroundId}`);
 
-        modal.querySelector(".modal-close-button")
+        modal.querySelector(".modal-close-button-container>button")
             .addEventListener("click", _e => CloseModal(modal, modalBackground));
     });
 }

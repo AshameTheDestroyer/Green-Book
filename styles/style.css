@@ -74,6 +74,11 @@ input:is(button):is(.emphasized-button, [type=submit]) {
   color: var(--vibrant-colour);
   background-color: var(--main-colour);
 }
+button:is(button):is(.emphasized-button, [type=submit]) svg,
+input:is(button):is(.emphasized-button, [type=submit]) svg {
+  fill: var(--background-colour) !important;
+  stroke: var(--background-colour) !important;
+}
 button:is(button):disabled,
 input:is(button):disabled {
   cursor: auto;
@@ -81,12 +86,33 @@ input:is(button):disabled {
 }
 button:is(button).icon-button,
 input:is(button).icon-button {
-  width: 4rem;
-  height: 4rem;
+  --size: 4rem;
+  width: var(--size);
+  height: var(--size);
   display: flex;
   place-content: center;
   place-items: center;
-  padding: 1rem;
+  padding: 0;
+}
+button:is(button).icon-button > a,
+input:is(button).icon-button > a {
+  all: unset;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  place-content: center;
+  place-items: center;
+}
+button:is(button).icon-button > a::after,
+input:is(button).icon-button > a::after {
+  content: none !important;
+}
+button:is(button).icon-button > svg,
+input:is(button).icon-button > svg {
+  width: calc(100% - 1rem);
+  height: calc(100% - 1rem);
+  stroke: none;
+  fill: var(--fore-colour);
 }
 button:is(input),
 input:is(input) {
@@ -98,6 +124,13 @@ input:is(input) {
 button:is(input):is([type=checkbox], [type=radio]),
 input:is(input):is([type=checkbox], [type=radio]) {
   cursor: pointer;
+}
+button:is(input)[type=search]::-webkit-search-decoration, button:is(input)[type=search]::-webkit-search-cancel-button, button:is(input)[type=search]::-webkit-search-results-button, button:is(input)[type=search]::-webkit-search-results-decoration,
+input:is(input)[type=search]::-webkit-search-decoration,
+input:is(input)[type=search]::-webkit-search-cancel-button,
+input:is(input)[type=search]::-webkit-search-results-button,
+input:is(input)[type=search]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
 }
 
 .button-displayer {

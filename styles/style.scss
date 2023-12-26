@@ -89,6 +89,11 @@ input {
 
             color: var(--vibrant-colour);
             background-color: var(--main-colour);
+
+            svg {
+                fill: var(--background-colour) !important;
+                stroke: var(--background-colour) !important;
+            }
         }
 
         &:disabled {
@@ -97,16 +102,43 @@ input {
         }
 
         &.icon-button {
-            $size: 4rem;
+            --size: 4rem;
 
-            width: $size;
-            height: $size;
+            width: var(--size);
+            height: var(--size);
 
             display: flex;
             place-content: center;
             place-items: center;
 
-            padding: 1rem;
+            padding: 0;
+
+            &>a {
+                $size: 100%;
+
+                all: unset;
+
+                width: $size;
+                height: $size;
+
+                display: flex;
+                place-content: center;
+                place-items: center;
+
+                &::after {
+                    content: none !important;
+                }
+            }
+
+            &>svg {
+                $size: calc(100% - 1rem);
+
+                width: $size;
+                height: $size;
+
+                stroke: none;
+                fill: var(--fore-colour);
+            }
         }
     }
 
@@ -117,8 +149,18 @@ input {
         accent-color: var(--main-colour);
         border-bottom: 2px solid var(--fore-darker-colour);
 
-        &:is([type="checkbox"], [type="radio"]) {
+        &:is([type=checkbox], [type=radio]) {
             cursor: pointer;
+        }
+
+        &[type=search] {
+
+            &::-webkit-search-decoration,
+            &::-webkit-search-cancel-button,
+            &::-webkit-search-results-button,
+            &::-webkit-search-results-decoration {
+                -webkit-appearance: none;
+            }
         }
     }
 }

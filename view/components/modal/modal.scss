@@ -46,17 +46,8 @@
         right: var(--padding);
         transform: translate(25%, -25%);
 
-        .modal-close-button {
-            $size: 1rem;
-
-            width: $size;
-            height: $size;
-
-            display: flex;
-            place-content: center;
-            place-items: center;
-
-            padding: 1.5rem;
+        &>button {
+            --size: 3rem;
         }
     }
 

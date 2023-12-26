@@ -13,6 +13,9 @@
   transition: inset 250ms, transform 250ms, color 250ms;
   pointer-events: none;
 }
+.input-field > input {
+  transition: color 250ms, border-color 250ms;
+}
 .input-field > input:is(:focus, :not(:-moz-placeholder-shown)) + label {
   top: 0;
   transform: translateY(-100%);

@@ -17,6 +17,15 @@
   gap: 1.5rem;
   padding: 0;
 }
+#main-header #search-form {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  gap: 0.5rem;
+}
+#main-header #search-form > button {
+  --size: 3rem;
+}
 #main-header > nav {
   background-color: var(--main-colour);
 }

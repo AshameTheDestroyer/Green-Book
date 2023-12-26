@@ -20,11 +20,20 @@ $name_ = $name;
 <link rel="stylesheet" href="./view/pages/signing_page/signing_page.css">
 
 <main id="signing-page">
-    <?php if ($signingMethod == "signing_up"): ?>
-        <form action=<?= $formAction ?> method="POST">
-            <h1>Sign up</h1>
-            <input type="hidden" name="signing_up" value="1">
-            <main>
+    <form action=<?= $formAction ?> method="POST">
+        <button id="signing-form-close-button" class="simple-button icon-button" type="button">
+            <a href="./home_page.php">
+                <?php include("./assets/icons/cross.svg") ?>
+            </a>
+        </button>
+
+        <h1>
+            <?= ($signingMethod == "signing_up") ? "Sign up" : "Sign in" ?>
+        </h1>
+
+        <main>
+            <?php if ($signingMethod == "signing_up"): ?>
+                <input type="hidden" name="signing_up" value="1">
                 <?= input_field(
                     $name = "name",
                     $title = "Name",
@@ -64,28 +73,8 @@ $name_ = $name;
                     $pattern = NULL,
                     $patternMessage = "Confirm password field should contain the same password as the above field.",
                 ) ?>
-            </main>
-            <section>
-                <div>
-                    <input id="terms-and-conditions-input" type="checkbox" required>
-                    <label for="terms-and-conditions-input">
-                        I agree to all of the <a href="./">terms and conditions</a>
-                    </label>
-                </div>
-            </section>
-            <section class="button-displayer">
-                <button type="reset">Reset</button>
-                <button type="submit">Submit</button>
-            </section>
-            <section>
-                <p>Already have an account? <a href="?signing_method=signing_in">Sign in</a></p>
-            </section>
-        </form>
-    <?php elseif ($signingMethod == "signing_in"): ?>
-        <form action=<?= $formAction ?> method="POST">
-            <h1>Sign in</h1>
-            <input type="hidden" name="signing_in" value="1">
-            <main>
+            <?php else: ?>
+                <input type="hidden" name="signing_in" value="1">
                 <?= input_field(
                     $name = "email",
                     $title = "Email",
@@ -100,16 +89,33 @@ $name_ = $name;
                     $value = NULL,
                     $pattern = "\$password\$",
                 ) ?>
-            </main>
-            <section class="button-displayer">
-                <button type="reset">Reset</button>
-                <button type="submit">Submit</button>
-            </section>
+            <?php endif ?>
+        </main>
+
+        <?php if ($signingMethod == "signing_up"): ?>
             <section>
-                <p>Doesn't have an account? <a href="?signing_method=signing_up">Sign up</a></p>
+                <div>
+                    <input id="terms-and-conditions-input" type="checkbox" required>
+                    <label for="terms-and-conditions-input">
+                        I agree to all of the <a href="./">terms and conditions</a>
+                    </label>
+                </div>
             </section>
-        </form>
-    <?php endif ?>
+        <?php endif ?>
+
+        <section class="button-displayer">
+            <button type="reset">Reset</button>
+            <button type="submit">Submit</button>
+        </section>
+
+        <section>
+            <?php if ($signingMethod == "signing_up"): ?>
+                <p>Already have an account? <a href="?signing_method=signing_in">Sign in</a></p>
+            <?php else: ?>
+                <p>Doesn't have an account? <a href="?signing_method=signing_up">Sign up</a></p>
+            <?php endif ?>
+        </section>
+    </form>
 
     <?php if ($signingError != NULL): ?>
         <?= modal(
