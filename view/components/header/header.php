@@ -20,22 +20,22 @@ $anchors = [
             <form id="search-form">
                 <input type="search" placeholder="Write a book's name...">
 
-                <button class="icon-button simple-button" type="reset">
+                <button class="icon-button simple-button" type="reset" data-svg-active-colour="error">
                     <?php include("./assets/icons/cross.svg") ?>
                 </button>
-                <button class="icon-button simple-button" type="submit">
+                <button class=" icon-button simple-button" type="submit">
                     <?php include("./assets/icons/magnifier.svg") ?>
                 </button>
             </form>
 
             <section class="button-displayer" data-grid-repeat="3">
-                <button class="icon-button simple-button" type="button">
+                <button class="icon-button simple-button" type="button" data-svg-active-colour="warning">
                     <?php include_once("./assets/icons/star.svg") ?>
                 </button>
                 <button class="icon-button simple-button" type="button">
                     <?php include_once("./assets/icons/cart.svg") ?>
                 </button>
-                <button class="icon-button simple-button" type="button">
+                <button class="icon-button simple-button" type="button" data-svg-active-colour="information">
                     <a href="./signing_page.php">
                         <?php include_once("./assets/icons/user.svg") ?>
                     </a>

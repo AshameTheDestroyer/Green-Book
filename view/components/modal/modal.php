@@ -13,7 +13,7 @@ function modal(
         <div id=\"{$id}-modal-background\" class=\"modal-background\"></div>
         <div id=\"{$id}-modal\" class=\"modal\">
             <div class=\"modal-close-button-container\">
-                <button class=\"simple-button icon-button\" type=\"button\">
+                <button class=\"simple-button icon-button\" type=\"button\" data-svg-active-colour=\"error\">
                     $crossIcon
                 </button>
             </div>

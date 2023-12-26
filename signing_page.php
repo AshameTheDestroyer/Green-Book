@@ -21,7 +21,8 @@ $name_ = $name;
 
 <main id="signing-page">
     <form action=<?= $formAction ?> method="POST">
-        <button id="signing-form-close-button" class="simple-button icon-button" type="button">
+        <button id="signing-form-close-button" class="simple-button icon-button" type="button"
+            data-svg-active-colour="error">
             <a href="./home_page.php">
                 <?php include("./assets/icons/cross.svg") ?>
             </a>
