@@ -18,7 +18,7 @@ if ($connection->connect_error) {
     <meta name="description" content="Here where you'll find every book you'll ever dream of!" />
     <meta name="robots" content="index, follow" />
 
-    <link rel="icon" type="image/svg+xml" href="" />
+    <link rel="icon" type="image/svg+xml" href="public/book.svg" />
     <link rel="stylesheet" href="styles/style.css">
 
     <script src="utils/create_portal.js" defer></script>
