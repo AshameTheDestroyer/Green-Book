@@ -59,6 +59,29 @@ body {
     }
 }
 
+::-webkit-scrollbar {
+    $size: 0.75rem;
+
+    width: $size;
+    height: $size;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--main-darker-colour);
+}
+
+*:not(body)::-webkit-scrollbar-track {
+    border: 2px solid var(--main-colour);
+    border-radius: 100rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-colour);
+
+    border: 2px solid var(--half-transparent-colour);
+    border-radius: 100vh;
+}
+
 button,
 input {
     font-size: inherit;

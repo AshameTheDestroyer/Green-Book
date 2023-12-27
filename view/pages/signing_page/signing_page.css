@@ -16,7 +16,6 @@
   box-shadow: var(--box-shadow);
 }
 #signing-page > form #signing-form-close-button {
-  --size: 2.5rem;
   position: absolute;
   top: calc(var(--padding) / 2);
   right: calc(var(--padding) / 2);
