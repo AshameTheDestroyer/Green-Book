@@ -1,4 +1,6 @@
 :root {
+  --first-screen-width: 800px;
+  --second-screen-width: 520px;
   --main-colour: #00e25e;
   --main-darker-colour: #08a84b;
   --vibrant-colour: #ffffff;
@@ -23,6 +25,7 @@
       calc(-1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarter-transparent-colour),
       calc(+1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarter-transparent-colour),
       calc(-1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarter-transparent-colour);
+  --header-height: 13rem;
   font-size: 62.5%;
 }
 

@@ -3,19 +3,28 @@
   flex-direction: column;
   position: sticky;
   top: 0;
+  height: var(--header-height);
+  overflow: hidden;
   z-index: 10;
 }
 #main-header > main {
   display: flex;
   flex-wrap: wrap;
-  place-content: center space-around;
-  place-items: center space-around;
-  gap: 2rem;
+  place-content: stretch space-around;
+  place-items: stretch space-around;
+  gap: 1.5rem;
   padding: 2rem;
   background-color: var(--background-colour);
 }
+#main-header > main h1 {
+  font-size: min(3rem, 5vw);
+  height: 100%;
+  display: flex;
+  place-content: center;
+  place-items: center;
+}
 #main-header > main .button-displayer {
-  gap: 1.5rem;
+  gap: 1rem;
   padding: 0;
 }
 #main-header #search-form {
@@ -28,21 +37,31 @@
   --size: 3rem;
 }
 #main-header > nav {
+  flex-grow: 1;
   background-color: var(--main-colour);
+  overflow: hidden;
 }
 #main-header > nav > ul {
   list-style-type: none;
+  height: 100%;
   display: flex;
-  flex-wrap: wrap;
   place-content: center space-around;
   place-items: center space-around;
   margin: 0;
   padding: 0;
 }
+#main-header > nav > ul > li {
+  height: 100%;
+}
 #main-header > nav > ul > li > a {
+  --padding: 1rem;
   font-weight: bold;
   text-decoration: none;
-  padding: 1rem 2rem;
+  height: calc(100% - var(--padding) * 2);
+  display: flex;
+  place-content: center;
+  place-items: center;
+  padding: var(--padding) calc(var(--padding) * 2);
   color: var(--background-colour);
   background-color: var(--main-colour);
   cursor: pointer;
@@ -54,4 +73,9 @@
 #main-header > nav > ul > li > a:is(:hover, :focus-visible) {
   padding-inline: 4rem;
   filter: brightness(120%);
+}
+@media (max-width: 720px) {
+  #main-header #search-form {
+    display: none;
+  }
 }

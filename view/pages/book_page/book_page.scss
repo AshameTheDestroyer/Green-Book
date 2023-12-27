@@ -1,0 +1,151 @@
+#book-page {
+    --padding: 4rem;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    padding: var(--padding);
+
+    &>header {
+        position: sticky;
+        top: var(--header-height);
+
+        margin: calc(-1 * var(--padding));
+        margin-bottom: calc(-1 * var(--padding) / 2);
+        padding: calc(var(--padding) / 2) var(--padding);
+
+        background-color: var(--background-colour);
+        border-bottom: 2px solid var(--background-darker-colour);
+
+        z-index: 1;
+    }
+
+    #book-displayer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(28rem, 35rem));
+        gap: 2rem;
+
+        .book-card {
+            --card-padding: 1rem;
+
+            position: relative;
+            max-width: calc(100vw - var(--padding) * 2);
+            aspect-ratio: 13 / 16;
+
+            border-radius: 1.5rem;
+            background-color: var(--background-darker-colour);
+            box-shadow: var(--box-shadow);
+
+            transition: transform 250ms;
+
+            overflow: hidden;
+
+            cursor: pointer;
+
+            &>form {
+                display: none;
+            }
+
+            &>header {
+                position: absolute;
+                top: var(--card-padding);
+                inset-inline: var(--card-padding);
+
+                display: flex;
+                place-content: center space-between;
+                place-items: center space-between;
+
+                &>p {
+                    font-weight: bold;
+
+                    position: relative;
+                    top: calc(-1 * var(--card-padding));
+                    left: calc(-1 * var(--card-padding));
+
+                    padding: calc(var(--card-padding) * 3 / 4);
+
+                    color: var(--background-colour);
+                    border-bottom-right-radius: 1.5rem;
+                    background-color: var(--main-colour);
+                }
+
+                .star-displayer {
+                    display: grid;
+
+                    &>div {
+                        display: flex;
+
+                        grid-row: 1;
+                        grid-column: 1;
+
+                        &>span {
+                            $margin-inline: -0.3rem;
+                            $size: 2.5rem;
+
+                            width: $size;
+                            height: $size;
+
+                            margin-inline: $margin-inline;
+
+                            overflow: hidden;
+
+                            &>svg {
+                                width: $size;
+                                height: $size;
+
+                                fill: var(--gray-colour);
+                            }
+
+                            &[data-is-half=true] {
+                                width: calc($size / 2);
+                            }
+
+                            &:first-child {
+                                margin-left: 0;
+                            }
+
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
+
+                        &:last-child>span svg {
+                            fill: var(--warning-colour) !important;
+                        }
+                    }
+                }
+            }
+
+            &>figure {
+                $size: 100%;
+
+                width: $size;
+                height: $size;
+
+                display: flex;
+
+                background-image: linear-gradient(transparent, var(--quarter-transparent-colour));
+
+                &>img {
+                    width: $size;
+                    height: $size;
+                }
+            }
+
+            &>figcaption {
+                position: absolute;
+                bottom: var(--card-padding);
+                left: var(--card-padding);
+
+                color: var(--background-colour);
+            }
+
+            &:is(:hover, :focus-within) {
+                transform: scale(1.02);
+            }
+        }
+    }
+}

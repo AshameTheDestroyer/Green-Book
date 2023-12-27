@@ -1,8 +1,8 @@
 <?php include_once("./view/layout/head.php") ?>
 
 <?php include_once("./control/signing.php") ?>
-<?php include("./view/components/input_field/input_field.php") ?>
-<?php include("./view/components/modal/modal.php") ?>
+<?php include_once("./view/components/input_field/input_field.php") ?>
+<?php include_once("./view/components/modal/modal.php") ?>
 
 <?php
 $signingMethod = filter_input(INPUT_GET, "signing_method", FILTER_SANITIZE_STRING);
