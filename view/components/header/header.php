@@ -18,12 +18,12 @@ $anchors = [
             </figure>
 
             <form id="search-form">
-                <input type="search" placeholder="Write a book's name...">
+                <input type="search" name="search-term" placeholder="Write a book's name...">
 
                 <button class="icon-button simple-button" type="reset" data-svg-active-colour="error">
                     <?php include("./assets/icons/cross.svg") ?>
                 </button>
-                <button class=" icon-button simple-button" type="submit">
+                <button class="icon-button simple-button" type="submit">
                     <?php include("./assets/icons/magnifier.svg") ?>
                 </button>
             </form>
@@ -46,7 +46,11 @@ $anchors = [
         <nav>
             <ul>
                 <?php foreach ($anchors as $title => $url): ?>
-                    <li><a class="uncolourized-text" href=<?= $url ?>><?= $title ?></a></li>
+                    <li>
+                        <a class="uncolourized-text" href="<?= $url ?>">
+                            <?= $title ?>
+                        </a>
+                    </li>
                 <?php endforeach ?>
             </ul>
         </nav>

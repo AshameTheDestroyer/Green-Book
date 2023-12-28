@@ -20,7 +20,7 @@ $name_ = $name;
 <link rel="stylesheet" href="./view/pages/signing_page/signing_page.css">
 
 <main id="signing-page">
-    <form action=<?= $formAction ?> method="POST">
+    <form action="<?= $formAction ?>" method="POST">
         <button id="signing-form-close-button" class="simple-button icon-button" type="button"
             data-svg-active-colour="error">
             <a href="./home_page.php">

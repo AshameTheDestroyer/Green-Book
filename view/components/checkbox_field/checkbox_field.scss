@@ -1,0 +1,10 @@
+.checkbox-field {
+    display: flex;
+    place-content: center;
+    place-items: center;
+    gap: 1rem;
+
+    &>input {
+        display: none;
+    }
+}

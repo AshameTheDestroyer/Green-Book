@@ -16,6 +16,26 @@
   border-bottom: 2px solid var(--background-darker-colour);
   z-index: 1;
 }
+#book-page > header > form {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+#book-page > header > form button {
+  --size: 3rem;
+}
+#book-page > header > form #search-input-field {
+  display: flex;
+  flex-grow: 1;
+  place-content: center start;
+  place-items: center start;
+  gap: 0.5rem;
+}
+#book-page > header > form #search-input-field > input {
+  flex-grow: 1;
+  max-width: min(20rem, 80vw - var(--padding) * 2);
+}
 #book-page #book-displayer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(28rem, 35rem));

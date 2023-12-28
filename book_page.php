@@ -2,19 +2,46 @@
 <?php include_once("./view/components/header/header.php") ?>
 
 <?php include_once("./control/fetch_books.php") ?>
+<?php include_once("./view/components/checkbox_field/checkbox_field.php") ?>
 
 <link rel="stylesheet" href="./view/pages/book_page/book_page.css">
 <script src="./view/pages/book_page/book_page.js" defer></script>
 
 <main id="book-page">
     <header>
-        <h1>Books</h1>
+        <form action="<?= $_SERVER["PHP_SELF"] ?>" method="GET">
+            <div id="search-input-field">
+                <input type="search" name="search-term" placeholder="Write a book's name...">
+
+                <button class="icon-button simple-button" type="reset" data-svg-active-colour="error">
+                    <?php include("./assets/icons/cross.svg") ?>
+                </button>
+                <button class="icon-button simple-button" type="submit">
+                    <?php include("./assets/icons/magnifier.svg") ?>
+                </button>
+            </div>
+
+            <?= checkbox_field(
+                $name = "title",
+                $title = "Title",
+                $checked = true,
+                $optional = true,
+                $children = "T",
+            ) ?>
+            <?= checkbox_field(
+                $name = "author",
+                $title = "Author",
+                $checked = false,
+                $optional = true,
+                $children = "A",
+            ) ?>
+        </form>
     </header>
 
     <main id="book-displayer">
         <?php foreach ($books as $book): ?>
             <div class="book-card" tabindex="0">
-                <form action=<?= $_SERVER["PHP_SELF"] ?> method="GET" aria-hidden>
+                <form action="<?= $_SERVER["PHP_SELF"] ?>" method="GET" aria-hidden>
                     <input type="hidden" name="book_id" value="<?= $book["id"] ?>" />
                     <button type="submit"></button>
                 </form>
@@ -33,7 +60,7 @@
                         </div>
                         <div>
                             <?php for ($i = $book["rating"]; $i > 0; $i--): ?>
-                                <span data-is-half=<?= ($i == 0.5) ? "true" : "" ?>>
+                                <span data-is-half="<?= ($i == 0.5) ? "true" : "" ?>">
                                     <?php include("./assets/icons/star.svg") ?>
                                 </span>
                             <?php endfor ?>

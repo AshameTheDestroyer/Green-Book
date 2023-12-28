@@ -21,6 +21,30 @@
         border-bottom: 2px solid var(--background-darker-colour);
 
         z-index: 1;
+
+        &>form {
+            flex-grow: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+
+            button {
+                --size: 3rem;
+            }
+
+            #search-input-field {
+                display: flex;
+                flex-grow: 1;
+                place-content: center start;
+                place-items: center start;
+                gap: 0.5rem;
+
+                &>input {
+                    flex-grow: 1;
+                    max-width: min(20rem, calc(80vw - var(--padding) * 2));
+                }
+            }
+        }
     }
 
     #book-displayer {

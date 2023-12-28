@@ -83,7 +83,7 @@ input:is(button) {
   padding: 1rem 2rem;
   border-radius: 1rem;
   cursor: pointer;
-  transition: transform 250ms, filter 250ms;
+  transition: transform 250ms, filter 250ms, background-color 250ms, color 250ms;
 }
 button:is(button):not(.simple-button),
 input:is(button):not(.simple-button) {
