@@ -17,7 +17,7 @@ $anchors = [
                 </h1>
             </figure>
 
-            <form id="search-form">
+            <form id="search-form" action="./book_page.php" method="GET">
                 <input type="search" name="search-term" placeholder="Write a book's name...">
 
                 <button class="icon-button simple-button" type="reset" data-svg-active-colour="error">
