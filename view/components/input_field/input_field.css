@@ -36,7 +36,7 @@
   color: var(--error-colour);
   border-color: var(--error-colour);
 }
-.input-field[data-is-required] > label::after {
+.input-field[data-is-required] label::after {
   content: "*";
   color: var(--required-colour);
 }
@@ -47,8 +47,12 @@
 .input-field[data-is-file-input] > input {
   display: none;
 }
-.input-field[data-is-file-input] label {
+.input-field[data-is-file-input] > button > label {
   position: static;
   transform: none !important;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  gap: 1rem;
   cursor: pointer !important;
 }

@@ -18,6 +18,14 @@ if ($signingOut) {
     try {
         $query = "INSERT INTO users(name, surname, email, password) VALUES ('$name', '$surname', '$email', '$password')";
         $connection->execute_query($query);
+
+        $query = "SELECT id, name, surname, email, is_administrator FROM users WHERE email = '$email' AND password = '$password' LIMIT 1";
+        $result = $connection->execute_query($query);
+        $user = $result->fetch_all(MYSQLI_ASSOC)[0];
+
+        $_SESSION["is_authenticated"] = true;
+        $_SESSION["user"] = $user;
+        header("location: home_page.php");
     } catch (mysqli_sql_exception $e) {
         $signingError = "Duplicate Email";
         $signingErrorMessage = "Email already exists, either sign in or pick another one.";
@@ -36,10 +44,12 @@ if ($signingOut) {
     if ($user == NULL) {
         $signingError = "Login Failed";
         $signingErrorMessage = "Either email or password is incorrect.";
-    } else {
-        $_SESSION["is_authenticated"] = true;
-        $_SESSION["user"] = $user;
-        header("location: home_page.php");
+
+        return;
     }
+
+    $_SESSION["is_authenticated"] = true;
+    $_SESSION["user"] = $user;
+    header("location: home_page.php");
 }
 ?>

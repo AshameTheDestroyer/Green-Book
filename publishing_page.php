@@ -5,14 +5,19 @@
 if ($_SESSION["user"]["is_administrator"] == null) {
     header("location: index.php");
 }
+
+global $publishingError;
+global $publishingErrorMessage;
 ?>
 
+<?php include_once("./control/publishing.php") ?>
+<?php include_once("./view/components/modal/modal.php") ?>
 <?php include_once("./view/components/input_field/input_field.php") ?>
 
 <link rel="stylesheet" href="./view/pages/publishing_page/publishing_page.css">
 
 <main id="publishing-page">
-    <form action="<?= $_SERVER["PHP_SELF"] ?>" method="POST">
+    <form action="<?= $_SERVER["PHP_SELF"] ?>" method="POST" enctype="multipart/form-data">
         <h1>Book Publishing</h1>
 
         <main>
@@ -67,34 +72,37 @@ if ($_SESSION["user"]["is_administrator"] == null) {
                 $minimum = 0,
                 $maximum = 10,
             ) ?>
-            <?= input_field(
-                $name = "cover",
-                $title = "Upload Cover",
-                $type = "file",
-                $value = null,
-                $pattern = null,
-                $pattern_message = null,
-                $id = null,
-                $optional = false,
-                $minimum = null,
-                $maximum = null,
-                $step = null,
-                $accept = "image/*",
-            ) ?>
-            <?= input_field(
-                $name = "pdf",
-                $title = "Upload PDF",
-                $type = "file",
-                $value = null,
-                $pattern = null,
-                $pattern_message = null,
-                $id = null,
-                $optional = false,
-                $minimum = null,
-                $maximum = null,
-                $step = null,
-                $accept = "application/msword, text/plain, application/pdf",
-            ) ?>
+
+            <section id="file-input-container" class="button-displayer">
+                <?= input_field(
+                    $name = "cover",
+                    $title = file_get_contents("./assets/icons/label.svg") . "<p>Upload Cover</p>",
+                    $type = "file",
+                    $value = null,
+                    $pattern = null,
+                    $pattern_message = null,
+                    $id = null,
+                    $optional = false,
+                    $minimum = null,
+                    $maximum = null,
+                    $step = null,
+                    $accept = "image/*",
+                ) ?>
+                <?= input_field(
+                    $name = "pdf-file",
+                    $title = file_get_contents("./assets/icons/book.svg") . "<p>Upload PDF</p>",
+                    $type = "file",
+                    $value = null,
+                    $pattern = null,
+                    $pattern_message = null,
+                    $id = null,
+                    $optional = false,
+                    $minimum = null,
+                    $maximum = null,
+                    $step = null,
+                    $accept = "application/msword, text/plain, application/pdf",
+                ) ?>
+            </section>
         </main>
 
         <section class="button-displayer">
@@ -102,6 +110,14 @@ if ($_SESSION["user"]["is_administrator"] == null) {
             <button type="submit">Submit</button>
         </section>
     </form>
+
+    <?php if ($publishingError != NULL): ?>
+        <?= modal(
+            $id = "publishing-error",
+            $title = $publishingError,
+            $message = $publishingErrorMessage,
+        ) ?>
+    <?php endif ?>
 </main>
 
 <?php include_once("./view/components/footer/footer.php") ?>

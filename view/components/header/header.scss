@@ -94,7 +94,7 @@
         }
     }
 
-    &.sticking-header {
+    &.sticking-header:not(:hover, :focus-within) {
 
         &>main {
             background-color: color-mix(in srgb, var(--background-colour) 60%, transparent 40%);

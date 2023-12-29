@@ -1,9 +1,17 @@
 #publishing-page {
+    --padding: 4rem;
+
     display: flex;
+    flex-direction: column;
     place-content: center;
     place-items: center;
 
+    padding: var(--padding);
+
     &>form {
+        width: calc(100% - var(--padding) * 2);
+        max-width: 60rem;
+
         display: flex;
         flex-direction: column;
         gap: 2rem;
@@ -18,9 +26,36 @@
         }
 
         &>main {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
             gap: 2rem;
+
+            #file-input-container {
+                grid-column: 1 / -1;
+
+                display: grid;
+                grid-template-columns: inherit;
+
+                padding-block: 0;
+
+                .input-field {
+
+                    button {
+                        height: 100%;
+
+                        label {
+
+                            &::after {
+                                margin-left: -1rem;
+                            }
+
+                            p {
+                                text-align: start;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -65,13 +65,13 @@
   padding-inline: 4rem;
   filter: brightness(120%);
 }
-#main-header.sticking-header > main {
+#main-header.sticking-header:not(:hover, :focus-within) > main {
   background-color: color-mix(in srgb, var(--background-colour) 60%, transparent 40%);
 }
-#main-header.sticking-header > nav {
+#main-header.sticking-header:not(:hover, :focus-within) > nav {
   background-color: color-mix(in srgb, var(--main-colour) 60%, transparent 40%);
 }
-#main-header.sticking-header > nav a {
+#main-header.sticking-header:not(:hover, :focus-within) > nav a {
   background-color: transparent;
 }
 @media (max-width: 720px) {

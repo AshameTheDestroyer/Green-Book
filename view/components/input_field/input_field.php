@@ -21,6 +21,7 @@ function input_field(
     $required = (!$optional) ? "required" : "";
     $dataIsRequired = (!$optional) ? "data-is-required" : "";
     $dataIsFileInput = ($type == "file") ? "data-is-file-input" : "";
+    $pattern = ($pattern != null) ? "pattern=\"$pattern\"" : "";
 
     $label = ($type != "file") ? "
             <label for=\"{$id}-input\">$title</label>
@@ -38,7 +39,7 @@ function input_field(
                 type=\"$type\"
                 placeholder=\" \"
                 value=\"$value\"
-                pattern=\"$pattern\"
+                $pattern
                 title=\"$pattern_message\"
                 $required
                 min=\"$minimum\"

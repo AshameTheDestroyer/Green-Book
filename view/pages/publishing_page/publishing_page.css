@@ -1,9 +1,14 @@
 #publishing-page {
+  --padding: 4rem;
   display: flex;
+  flex-direction: column;
   place-content: center;
   place-items: center;
+  padding: var(--padding);
 }
 #publishing-page > form {
+  width: calc(100% - var(--padding) * 2);
+  max-width: 60rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -15,7 +20,22 @@
   font-size: 2.4rem;
 }
 #publishing-page > form > main {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 2rem;
+}
+#publishing-page > form > main #file-input-container {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: inherit;
+  padding-block: 0;
+}
+#publishing-page > form > main #file-input-container .input-field button {
+  height: 100%;
+}
+#publishing-page > form > main #file-input-container .input-field button label::after {
+  margin-left: -1rem;
+}
+#publishing-page > form > main #file-input-container .input-field button label p {
+  text-align: start;
 }

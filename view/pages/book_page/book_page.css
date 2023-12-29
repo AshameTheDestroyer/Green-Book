@@ -10,6 +10,7 @@
   position: sticky;
   top: var(--header-height);
   display: flex;
+  flex-wrap: wrap;
   place-content: stretch center;
   place-items: stretch center;
   gap: 2rem;
@@ -62,7 +63,7 @@
 #book-page > header > form .drop-down#price-drop-down[data-is-open=true] .drop-down-wrapper {
   padding-top: 2rem;
 }
-#book-page > header.sticking-header {
+#book-page > header.sticking-header:not(:hover, :focus-within) {
   background-color: color-mix(in srgb, var(--background-colour) 60%, transparent 40%);
 }
 #book-page #book-displayer {
