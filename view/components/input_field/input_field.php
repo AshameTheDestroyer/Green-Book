@@ -14,14 +14,24 @@ function input_field(
     int $minimum = null,
     int $maximum = null,
     float $step = null,
+    string $accept = null,
 ): string {
     $title ??= $name;
     $id ??= $name;
     $required = (!$optional) ? "required" : "";
     $dataIsRequired = (!$optional) ? "data-is-required" : "";
+    $dataIsFileInput = ($type == "file") ? "data-is-file-input" : "";
+
+    $label = ($type != "file") ? "
+            <label for=\"{$id}-input\">$title</label>
+        " : "
+            <button class=\"label-container-button\" type=\"button\">
+                <label for=\"{$id}-input\">$title</label>
+            </button>
+        ";
 
     return "
-        <div id=\"{$id}-input-field\" class=\"input-field\" $dataIsRequired>
+        <div id=\"{$id}-input-field\" class=\"input-field\" $dataIsRequired $dataIsFileInput>
             <input 
                 id=\"{$id}-input\" 
                 name=\"$name\"
@@ -34,8 +44,9 @@ function input_field(
                 min=\"$minimum\"
                 max=\"$maximum\"
                 step=\"$step\"
+                accept=\"$accept\"
             />
-            <label for=\"{$id}-input\">$title</label>
+            $label
         </div>
     ";
 }

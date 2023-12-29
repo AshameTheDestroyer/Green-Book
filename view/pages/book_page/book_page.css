@@ -9,6 +9,10 @@
 #book-page > header {
   position: sticky;
   top: var(--header-height);
+  display: flex;
+  place-content: stretch center;
+  place-items: stretch center;
+  gap: 2rem;
   margin: calc(-1 * var(--padding));
   margin-bottom: calc(-1 * var(--padding) / 2);
   padding: calc(var(--padding) / 2) var(--padding);
@@ -57,6 +61,9 @@
 }
 #book-page > header > form .drop-down#price-drop-down[data-is-open=true] .drop-down-wrapper {
   padding-top: 2rem;
+}
+#book-page > header.sticking-header {
+  background-color: color-mix(in srgb, var(--background-colour) 60%, transparent 40%);
 }
 #book-page #book-displayer {
   display: grid;

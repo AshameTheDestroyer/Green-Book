@@ -39,7 +39,7 @@ $name_ = $name;
             </p>
             <section class="button-displayer">
                 <button class="unemphasized-button" type="submit">Sign out</button>
-                <button class="emphasized-button" type="button">
+                <button class="emphasized-button anchor-button" type="button">
                     <a class="uncolourized-text" href="./home_page.php">Go to Homepage</a>
                 </button>
             </section>

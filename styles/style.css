@@ -83,13 +83,9 @@ input:is(button) {
   --padding-block: 1rem;
   --svg-active-colour: var(--main-colour);
   padding: var(--padding-block) var(--padding-inline);
-  display: flex;
-  place-content: center;
-  place-items: center;
   border-radius: 1rem;
   cursor: pointer;
   transition: transform 250ms, filter 250ms, background-color 250ms, color 250ms;
-  overflow: hidden;
 }
 button:is(button):not(.simple-button),
 input:is(button):not(.simple-button) {
@@ -152,16 +148,18 @@ input:is(button).icon-button svg {
   fill: var(--fore-colour);
   transition: fill 250ms, stroke 250ms;
 }
-button:is(button) > a,
-input:is(button) > a {
-  height: calc(100% + var(--padding-block) * 2);
+button:is(button).anchor-button,
+input:is(button).anchor-button {
   display: flex;
-  flex-grow: 1;
   place-content: center;
   place-items: center;
-  margin-inline: calc(-1 * var(--padding-inline));
-  margin-block: calc(-1 * var(--padding-block));
-  word-break: break-all;
+  padding: 0;
+}
+button:is(button).anchor-button > a,
+input:is(button).anchor-button > a {
+  flex-grow: 1;
+  padding: var(--padding-block) var(--padding-inline);
+  border-radius: inherit;
 }
 button[data-svg-active-colour=error],
 input[data-svg-active-colour=error] {

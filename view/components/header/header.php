@@ -7,7 +7,8 @@ $anchors = [
 ?>
 
 <div class="fragment" data-create-portal="body" data-portal-index="0">
-    <link rel="stylesheet" href="view/components/header/header.css">
+    <link rel="stylesheet" href="./view/components/header/header.css">
+    <script src="./view/components/header/header.js" defer></script>
 
     <header id="main-header">
         <main>

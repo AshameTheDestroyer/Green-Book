@@ -1,0 +1,21 @@
+#publishing-page {
+  display: flex;
+  place-content: center;
+  place-items: center;
+}
+#publishing-page > form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 4rem;
+  border-radius: 2rem;
+  box-shadow: var(--box-shadow);
+}
+#publishing-page > form > h1 {
+  font-size: 2.4rem;
+}
+#publishing-page > form > main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

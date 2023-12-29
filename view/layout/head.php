@@ -30,7 +30,7 @@ if (!str_ends_with($_SERVER["PHP_SELF"], "signing_page.php") and $_SESSION["is_a
     <script src="utils/create_portal.js" defer></script>
     <script src="utils/fragment.js" defer></script>
 
-    <title>Book Store</title>
+    <title>Green Book</title>
 </head>
 
 <body>
