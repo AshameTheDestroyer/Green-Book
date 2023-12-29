@@ -102,17 +102,11 @@ input {
 
         padding: var(--padding-block) var(--padding-inline);
 
-        display: flex;
-        place-content: center;
-        place-items: center;
-
         border-radius: 1rem;
 
         cursor: pointer;
 
         transition: transform 250ms, filter 250ms, background-color 250ms, color 250ms;
-
-        overflow: hidden;
 
         &:not(.simple-button) {
             box-shadow: var(--box-shadow);
@@ -188,18 +182,20 @@ input {
             }
         }
 
-        &>a {
-            height: calc(100% + var(--padding-block) * 2);
-
+        &.anchor-button {
             display: flex;
-            flex-grow: 1;
             place-content: center;
             place-items: center;
 
-            margin-inline: calc(-1 * var(--padding-inline));
-            margin-block: calc(-1 * var(--padding-block));
+            padding: 0;
 
-            word-break: break-all;
+            &>a {
+                flex-grow: 1;
+
+                padding: var(--padding-block) var(--padding-inline);
+
+                border-radius: inherit;
+            }
         }
     }
 

@@ -94,6 +94,21 @@
         }
     }
 
+    &.sticking-header {
+
+        &>main {
+            background-color: color-mix(in srgb, var(--background-colour) 60%, transparent 40%);
+        }
+
+        &>nav {
+            background-color: color-mix(in srgb, var(--main-colour) 60%, transparent 40%);
+
+            a {
+                background-color: transparent;
+            }
+        }
+    }
+
     @media (max-width: 720px) {
 
         #search-form {

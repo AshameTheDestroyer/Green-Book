@@ -65,6 +65,15 @@
   padding-inline: 4rem;
   filter: brightness(120%);
 }
+#main-header.sticking-header > main {
+  background-color: color-mix(in srgb, var(--background-colour) 60%, transparent 40%);
+}
+#main-header.sticking-header > nav {
+  background-color: color-mix(in srgb, var(--main-colour) 60%, transparent 40%);
+}
+#main-header.sticking-header > nav a {
+  background-color: transparent;
+}
 @media (max-width: 720px) {
   #main-header #search-form {
     display: none;

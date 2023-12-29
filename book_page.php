@@ -12,6 +12,12 @@
 
 <main id="book-page">
     <header>
+        <?php if ($_SESSION["user"]["is_administrator"] == true): ?>
+            <button class="emphasized-button anchor-button">
+                <a class="uncolourized-text" href="./publishing_page.php">Publish a Book</a>
+            </button>
+        <?php endif ?>
+
         <form action="<?= $_SERVER["PHP_SELF"] ?>" method="GET">
             <div id="search-input-field">
                 <input type="search" name="search-term" placeholder="Write a book's name...">

@@ -29,7 +29,7 @@ if ($signingOut) {
     $email = strtolower($email);
     $password = sha1($password);
 
-    $query = "SELECT id, name, surname, email FROM users WHERE email = '$email' AND password = '$password' LIMIT 1";
+    $query = "SELECT id, name, surname, email, is_administrator FROM users WHERE email = '$email' AND password = '$password' LIMIT 1";
     $result = $connection->execute_query($query);
     $user = $result->fetch_all(MYSQLI_ASSOC)[0];
 
