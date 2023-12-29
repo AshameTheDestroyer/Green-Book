@@ -79,11 +79,17 @@ input {
 }
 button:is(button),
 input:is(button) {
+  --padding-inline: 2rem;
+  --padding-block: 1rem;
   --svg-active-colour: var(--main-colour);
-  padding: 1rem 2rem;
+  padding: var(--padding-block) var(--padding-inline);
+  display: flex;
+  place-content: center;
+  place-items: center;
   border-radius: 1rem;
   cursor: pointer;
   transition: transform 250ms, filter 250ms, background-color 250ms, color 250ms;
+  overflow: hidden;
 }
 button:is(button):not(.simple-button),
 input:is(button):not(.simple-button) {
@@ -99,14 +105,14 @@ button:is(button):is(:hover, :focus-visible):not(:disabled).icon-button svg,
 input:is(button):is(:hover, :focus-visible):not(:disabled).icon-button svg {
   fill: var(--svg-active-colour);
 }
-button:is(button):is(.emphasized-button, [type=submit]),
-input:is(button):is(.emphasized-button, [type=submit]) {
+button:is(button):is(.emphasized-button, [type=submit]:not(.unemphasized-button)),
+input:is(button):is(.emphasized-button, [type=submit]:not(.unemphasized-button)) {
   font-weight: bold;
   color: var(--vibrant-colour);
   background-color: var(--main-colour);
 }
-button:is(button):is(.emphasized-button, [type=submit]) svg,
-input:is(button):is(.emphasized-button, [type=submit]) svg {
+button:is(button):is(.emphasized-button, [type=submit]:not(.unemphasized-button)) svg,
+input:is(button):is(.emphasized-button, [type=submit]:not(.unemphasized-button)) svg {
   fill: var(--background-colour) !important;
   stroke: var(--background-colour) !important;
 }
@@ -145,6 +151,17 @@ input:is(button).icon-button svg {
   stroke: none;
   fill: var(--fore-colour);
   transition: fill 250ms, stroke 250ms;
+}
+button:is(button) > a,
+input:is(button) > a {
+  height: calc(100% + var(--padding-block) * 2);
+  display: flex;
+  flex-grow: 1;
+  place-content: center;
+  place-items: center;
+  margin-inline: calc(-1 * var(--padding-inline));
+  margin-block: calc(-1 * var(--padding-block));
+  word-break: break-all;
 }
 button[data-svg-active-colour=error],
 input[data-svg-active-colour=error] {
@@ -264,13 +281,17 @@ figure {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .colourized-text,
 a:not(.uncolourized-text) {
   --background-image: linear-gradient(180deg,
           var(--main-colour) 50%,
           var(--main-darker-colour));
   font-weight: bold;
-  text-decoration: none;
   position: relative;
   color: var(--main-colour);
   background-color: white;
@@ -287,10 +308,6 @@ a:not(.uncolourized-text).stroked-text {
 .colourized-text.stroked-text:is(a)::after,
 a:not(.uncolourized-text).stroked-text:is(a)::after {
   border: 1px solid var(--main-darker-colour);
-}
-.colourized-text:is(a),
-a:not(.uncolourized-text):is(a) {
-  color: inherit;
 }
 .colourized-text:is(a):focus-visible,
 a:not(.uncolourized-text):is(a):focus-visible {

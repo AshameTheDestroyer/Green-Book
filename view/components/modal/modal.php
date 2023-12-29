@@ -6,10 +6,10 @@ function modal(
     string $id,
     string $title,
     string $message,
-) {
+): string {
     $crossIcon = file_get_contents("./assets/icons/cross.svg");
 
-    echo "
+    return "
         <div id=\"{$id}-modal-background\" class=\"modal-background\"></div>
         <div id=\"{$id}-modal\" class=\"modal\">
             <div class=\"modal-close-button-container\">

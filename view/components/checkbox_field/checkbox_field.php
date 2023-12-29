@@ -9,14 +9,14 @@ function checkbox_field(
     bool $optional = false,
     string $children = null,
     string $id = null,
-) {
+): string {
     $id ??= $name;
     $title ??= $name;
     $required = (!$optional) ? "required" : "";
     $checked = ($checked) ? "checked" : "";
     $buttonEmphasizedClass = ($checked) ? "emphasized-button" : "";
 
-    echo "
+    return "
         <div id=\"{$id}-checkbox-field\" class=\"checkbox-field\">
             <input id=\"{$id}-checkbox\" type=\"checkbox\" name=\"$name\" $required $checked />
             <button class=\"icon-button simple-button $buttonEmphasizedClass\" type=\"button\">

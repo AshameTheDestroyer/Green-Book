@@ -7,6 +7,12 @@ $connection = new mysqli($serverName, $username, $password, $databaseName);
 if ($connection->connect_error) {
     die("Connection has failed: " . $connection->connect_error);
 }
+
+session_start();
+
+if (!str_ends_with($_SERVER["PHP_SELF"], "signing_page.php") and $_SESSION["is_authenticated"] != true) {
+    header("location: signing_page.php");
+}
 ?>
 
 <!DOCTYPE html>

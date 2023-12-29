@@ -96,15 +96,23 @@ input {
     border: none;
 
     &:is(button) {
+        --padding-inline: 2rem;
+        --padding-block: 1rem;
         --svg-active-colour: var(--main-colour);
 
-        padding: 1rem 2rem;
+        padding: var(--padding-block) var(--padding-inline);
+
+        display: flex;
+        place-content: center;
+        place-items: center;
 
         border-radius: 1rem;
 
         cursor: pointer;
 
         transition: transform 250ms, filter 250ms, background-color 250ms, color 250ms;
+
+        overflow: hidden;
 
         &:not(.simple-button) {
             box-shadow: var(--box-shadow);
@@ -121,7 +129,7 @@ input {
             }
         }
 
-        &:is(.emphasized-button, [type="submit"]) {
+        &:is(.emphasized-button, [type="submit"]:not(.unemphasized-button)) {
             font-weight: bold;
 
             color: var(--vibrant-colour);
@@ -178,6 +186,20 @@ input {
 
                 transition: fill 250ms, stroke 250ms;
             }
+        }
+
+        &>a {
+            height: calc(100% + var(--padding-block) * 2);
+
+            display: flex;
+            flex-grow: 1;
+            place-content: center;
+            place-items: center;
+
+            margin-inline: calc(-1 * var(--padding-inline));
+            margin-block: calc(-1 * var(--padding-block));
+
+            word-break: break-all;
         }
     }
 
@@ -239,6 +261,12 @@ figure {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+
+    color: inherit;
+}
+
 .colourized-text,
 a:not(.uncolourized-text) {
     --background-image: linear-gradient(180deg,
@@ -246,7 +274,6 @@ a:not(.uncolourized-text) {
             var(--main-darker-colour));
 
     font-weight: bold;
-    text-decoration: none;
 
     position: relative;
 
@@ -268,7 +295,6 @@ a:not(.uncolourized-text) {
     }
 
     &:is(a) {
-        color: inherit;
 
         &:focus-visible {
             outline: 2px solid black;

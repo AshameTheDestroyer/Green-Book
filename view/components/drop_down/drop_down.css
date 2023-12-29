@@ -1,0 +1,45 @@
+.drop-down {
+  --offset: 1rem;
+  position: relative;
+}
+.drop-down > button {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  gap: 1rem;
+}
+.drop-down > button svg {
+  width: 2rem;
+  height: 2rem;
+  transition: transform 250ms;
+}
+.drop-down .drop-down-wrapper {
+  position: absolute;
+  top: calc(100% + var(--offset));
+  right: 0;
+  width: -moz-max-content;
+  width: max-content;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0fr;
+  background-color: var(--background-colour);
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  transition: grid-template-rows 250ms, padding 250ms;
+  isolation: isolate;
+  z-index: 1;
+}
+.drop-down .drop-down-wrapper .drop-down-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+.drop-down .drop-down-wrapper .drop-down-container > * {
+  padding: 1rem;
+  border-radius: 0;
+}
+.drop-down[data-is-open=true] .drop-down-wrapper {
+  grid-template-rows: 1fr;
+}

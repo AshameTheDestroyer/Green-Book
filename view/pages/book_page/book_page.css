@@ -36,6 +36,28 @@
   flex-grow: 1;
   max-width: min(20rem, 80vw - var(--padding) * 2);
 }
+#book-page > header > form .drop-down > button > svg {
+  stroke: var(--fore-darker-colour);
+}
+#book-page > header > form .drop-down .drop-down-container .checkbox-field,
+#book-page > header > form .drop-down .drop-down-container .checkbox-field label {
+  cursor: pointer;
+}
+#book-page > header > form .drop-down .drop-down-container > * {
+  transition: background-color 250ms;
+}
+#book-page > header > form .drop-down .drop-down-container > *:is(:hover, :focus-within) {
+  background-color: var(--background-darker-colour);
+}
+#book-page > header > form .drop-down#price-drop-down .drop-down-container {
+  gap: 1rem;
+}
+#book-page > header > form .drop-down#price-drop-down .drop-down-container label {
+  left: 1rem;
+}
+#book-page > header > form .drop-down#price-drop-down[data-is-open=true] .drop-down-wrapper {
+  padding-top: 2rem;
+}
 #book-page #book-displayer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(28rem, 35rem));

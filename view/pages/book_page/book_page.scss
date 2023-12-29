@@ -44,6 +44,46 @@
                     max-width: min(20rem, calc(80vw - var(--padding) * 2));
                 }
             }
+
+            .drop-down {
+
+                &>button>svg {
+                    stroke: var(--fore-darker-colour);
+
+
+                }
+
+                .drop-down-container {
+
+                    .checkbox-field,
+                    .checkbox-field label {
+                        cursor: pointer;
+                    }
+
+                    &>* {
+                        transition: background-color 250ms;
+
+                        &:is(:hover, :focus-within) {
+                            background-color: var(--background-darker-colour);
+                        }
+                    }
+                }
+
+                &#price-drop-down {
+
+                    .drop-down-container {
+                        gap: 1rem;
+
+                        label {
+                            left: 1rem;
+                        }
+                    }
+
+                    &[data-is-open=true] .drop-down-wrapper {
+                        padding-top: 2rem;
+                    }
+                }
+            }
         }
     }
 

@@ -4,10 +4,7 @@ checkboxFields.forEach(checkboxField => {
         button = checkboxField.querySelector("button"),
         checkbox = checkboxField.querySelector("input");
 
-    button.addEventListener("click", _e => {
-        checkbox.click();
-    });
-
+    checkboxField.addEventListener("click", e => (e.target.closest("label") == null) && checkbox.click());
     checkbox.addEventListener("change", OnCheckboxChange);
 
     function OnCheckboxChange(_e) {

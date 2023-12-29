@@ -27,15 +27,6 @@
   gap: 1rem;
   padding: 0;
 }
-#main-header #search-form {
-  display: flex;
-  place-content: center;
-  place-items: center;
-  gap: 0.5rem;
-}
-#main-header #search-form > button {
-  --size: 3rem;
-}
 #main-header > nav {
   flex-grow: 1;
   background-color: var(--main-colour);

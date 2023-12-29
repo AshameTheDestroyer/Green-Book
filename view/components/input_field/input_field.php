@@ -8,18 +8,33 @@ function input_field(
     string $type = "text",
     string $value = null,
     string $pattern = null,
-    string $patternMessage = null,
+    string $pattern_message = null,
     string $id = null,
     bool $optional = false,
-) {
+    int $minimum = null,
+    int $maximum = null,
+    float $step = null,
+): string {
     $title ??= $name;
     $id ??= $name;
     $required = (!$optional) ? "required" : "";
     $dataIsRequired = (!$optional) ? "data-is-required" : "";
 
-    echo "
+    return "
         <div id=\"{$id}-input-field\" class=\"input-field\" $dataIsRequired>
-            <input id=\"{$id}-input\" name=\"$name\" type=\"$type\" placeholder=\" \" value=\"$value\" pattern=\"$pattern\" title=\"$patternMessage\" $required />
+            <input 
+                id=\"{$id}-input\" 
+                name=\"$name\"
+                type=\"$type\"
+                placeholder=\" \"
+                value=\"$value\"
+                pattern=\"$pattern\"
+                title=\"$pattern_message\"
+                $required
+                min=\"$minimum\"
+                max=\"$maximum\"
+                step=\"$step\"
+            />
             <label for=\"{$id}-input\">$title</label>
         </div>
     ";

@@ -17,17 +17,6 @@ $anchors = [
                 </h1>
             </figure>
 
-            <form id="search-form" action="./book_page.php" method="GET">
-                <input type="search" name="search-term" placeholder="Write a book's name...">
-
-                <button class="icon-button simple-button" type="reset" data-svg-active-colour="error">
-                    <?php include("./assets/icons/cross.svg") ?>
-                </button>
-                <button class="icon-button simple-button" type="submit">
-                    <?php include("./assets/icons/magnifier.svg") ?>
-                </button>
-            </form>
-
             <section class="button-displayer" data-grid-repeat="3">
                 <button class="icon-button simple-button" type="button" data-svg-active-colour="warning">
                     <?php include_once("./assets/icons/star.svg") ?>

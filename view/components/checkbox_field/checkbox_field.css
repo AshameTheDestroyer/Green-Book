@@ -1,7 +1,7 @@
 .checkbox-field {
   display: flex;
-  place-content: center;
-  place-items: center;
+  place-content: center stretch;
+  place-items: center stretch;
   gap: 1rem;
 }
 .checkbox-field > input {

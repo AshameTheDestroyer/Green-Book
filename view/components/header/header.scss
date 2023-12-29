@@ -38,17 +38,6 @@
         }
     }
 
-    #search-form {
-        display: flex;
-        place-content: center;
-        place-items: center;
-        gap: 0.5rem;
-
-        &>button {
-            --size: 3rem;
-        }
-    }
-
     &>nav {
         flex-grow: 1;
 
