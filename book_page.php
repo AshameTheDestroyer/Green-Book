@@ -20,7 +20,7 @@
 
         <form action="<?= $_SERVER["PHP_SELF"] ?>" method="GET">
             <div id="search-input-field">
-                <input type="search" name="search-term" placeholder="Write a book's name...">
+                <input type="search" name="search-term" onkeyup="searchBooks(this.value)" placeholder="Write a book's name...">
 
                 <button class="icon-button simple-button" type="reset" data-svg-active-colour="error">
                     <?php include("./assets/icons/cross.svg") ?>
@@ -29,6 +29,26 @@
                     <?php include("./assets/icons/magnifier.svg") ?>
                 </button>
             </div>
+            <script>
+                var mainContent;
+                onload = ()=> {mainContent = document.getElementById("book-displayer").innerHTML;}
+                function searchBooks(str) {
+                    if (str == ""){
+                        document.getElementById("book-displayer").innerHTML = mainContent;
+                    }
+                    else{
+                        var xmlhttp = new XMLHttpRequest();
+                        xmlhttp.onreadystatechange = () => {
+                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                                document.getElementById("book-displayer").innerHTML = xmlhttp.responseText? xmlhttp.responseText:'<h3 style="color:#00e25e">No result</h3>';
+                            }
+                        };
+                        xmlhttp.open("GET", "view/pages/book_page/searchBooks.php?q=" + str, true);
+                        xmlhttp.send();
+                    }
+                    console.log(mainContent);
+                }
+            </script>
 
             <?= drop_down(
                 $children = file_get_contents("./assets/icons/price.svg") . "<p>Price</p>",
