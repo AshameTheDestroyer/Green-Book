@@ -46,7 +46,6 @@
                         xmlhttp.open("GET", "view/pages/book_page/searchBooks.php?q=" + str, true);
                         xmlhttp.send();
                     }
-                    console.log(mainContent);
                 }
             </script>
 
