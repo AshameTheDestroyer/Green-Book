@@ -16,27 +16,29 @@ $dashboards = [
 
     <header id="main-header">
         <main>
-            <figure id="logo">
+            <figure id="logo" title="Go Home">
                 <h1>
                     <a class="stroked-text undecorated-text" href="./home_page.php">Green Book</a>
                 </h1>
             </figure>
 
             <section class="button-displayer" data-grid-repeat="<?= ($_SESSION["user"]["is_administrator"]) ? 4 : 3 ?>">
-                <button class="icon-button simple-button" type="button" data-svg-active-colour="warning">
+                <button class="icon-button simple-button" type="button" title="Favourites"
+                    data-svg-active-colour="warning">
                     <?php include_once("./assets/icons/star.svg") ?>
                 </button>
-                <button class="icon-button simple-button" type="button">
+                <button class="icon-button simple-button" type="button" title="Cart">
                     <?php include_once("./assets/icons/cart.svg") ?>
                 </button>
-                <button class="icon-button simple-button" type="button" data-svg-active-colour="information">
+                <button class="icon-button simple-button" type="button" title="Profile"
+                    data-svg-active-colour="information">
                     <a href="./signing_page.php">
                         <?php include_once("./assets/icons/user.svg") ?>
                     </a>
                 </button>
                 <?php if ($_SESSION["user"]["is_administrator"]): ?>
                     <button id="dashboard-navigation-bar-toggling-button" class="icon-button simple-button" type="button"
-                        data-svg-active-colour="required">
+                        title="Dashboards" data-svg-active-colour="required">
                         <?php include_once("./assets/icons/dashboard.svg") ?>
                     </button>
                 <?php endif ?>

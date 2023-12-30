@@ -13,7 +13,7 @@
   place-content: stretch space-around;
   place-items: stretch space-around;
   gap: 1.5rem;
-  padding: 2rem;
+  padding: 1.5rem;
   background-color: var(--background-colour);
   transition: background-color 250ms;
 }
@@ -45,14 +45,13 @@
   height: 100%;
 }
 #main-header > nav > ul > li > a {
-  --padding: 1rem;
   font-weight: bold;
   text-decoration: none;
-  height: calc(100% - var(--padding) * 2);
+  height: 100%;
   display: flex;
   place-content: center;
   place-items: center;
-  padding: var(--padding) calc(var(--padding) * 2);
+  padding-inline: 2rem;
   color: var(--background-colour);
   background-color: var(--main-colour);
   transition: filter 250ms, padding 250ms, background-color 250ms;

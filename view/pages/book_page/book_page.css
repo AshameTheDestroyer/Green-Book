@@ -108,6 +108,7 @@
   display: flex;
   place-content: center space-between;
   place-items: center space-between;
+  z-index: 1;
 }
 #book-page #book-displayer .book-card > header > p {
   font-weight: bold;
@@ -151,14 +152,32 @@
   fill: var(--warning-colour) !important;
 }
 #book-page #book-displayer .book-card > figure {
+  position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  background-image: linear-gradient(transparent, var(--quarter-transparent-colour));
 }
 #book-page #book-displayer .book-card > figure > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#book-page #book-displayer .book-card > figure > img:first-child {
+  width: calc(100% + 2rem);
+  height: calc(100% + 2rem);
+  filter: blur(10px) brightness(80%);
+}
+#book-page #book-displayer .book-card > figure > img:last-child {
   width: 100%;
   height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+#book-page #book-displayer .book-card > figure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(transparent, var(--quarter-transparent-colour));
 }
 #book-page #book-displayer .book-card > figcaption {
   position: absolute;

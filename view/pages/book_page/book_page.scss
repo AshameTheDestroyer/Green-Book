@@ -152,6 +152,8 @@
                 place-content: center space-between;
                 place-items: center space-between;
 
+                z-index: 1;
+
                 &>p {
                     font-weight: bold;
 
@@ -216,16 +218,42 @@
             &>figure {
                 $size: 100%;
 
+                position: relative;
                 width: $size;
                 height: $size;
 
-                display: flex;
-
-                background-image: linear-gradient(transparent, var(--quarter-transparent-colour));
-
                 &>img {
-                    width: $size;
-                    height: $size;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+
+                    &:first-child {
+                        $size: calc(100% + 2rem);
+
+                        width: $size;
+                        height: $size;
+
+                        filter: blur(10px) brightness(80%);
+                    }
+
+                    &:last-child {
+                        $size: 100%;
+
+                        width: $size;
+                        height: $size;
+
+                        object-fit: contain;
+                    }
+                }
+
+                &::after {
+                    content: "";
+
+                    position: absolute;
+                    inset: 0;
+
+                    background-image: linear-gradient(transparent, var(--quarter-transparent-colour));
                 }
             }
 

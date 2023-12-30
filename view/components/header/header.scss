@@ -17,7 +17,7 @@
         place-items: stretch space-around;
         gap: 1.5rem;
 
-        padding: 2rem;
+        padding: 1.5rem;
 
         background-color: var(--background-colour);
 
@@ -63,17 +63,15 @@
                 height: 100%;
 
                 &>a {
-                    --padding: 1rem;
-
                     font-weight: bold;
                     text-decoration: none;
 
-                    height: calc(100% - var(--padding) * 2);
+                    height: 100%;
                     display: flex;
                     place-content: center;
                     place-items: center;
 
-                    padding: var(--padding) calc(var(--padding) * 2);
+                    padding-inline: 2rem;
 
                     color: var(--background-colour);
                     background-color: var(--main-colour);

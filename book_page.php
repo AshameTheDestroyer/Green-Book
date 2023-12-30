@@ -141,7 +141,9 @@
                 </header>
 
                 <figure>
-                    <img src="<?= $book["cover_url"] ?>" alt="The cover of the book &quot;<?= $book["title"] ?>&quot;.">
+                    <img src="<?= "./uploads/covers/" . $book["cover_url"] ?>" aria-hidden>
+                    <img src="<?= "./uploads/covers/" . $book["cover_url"] ?>"
+                        alt="The cover of the book &quot;<?= $book["title"] ?>&quot;.">
                 </figure>
 
                 <figcaption>
