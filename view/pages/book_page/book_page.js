@@ -14,3 +14,4 @@ window.addEventListener("scroll", _e => {
         bookPageHeader.classList.remove("sticking-header");
     }
 });
+
