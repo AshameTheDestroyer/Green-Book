@@ -29,35 +29,7 @@
                     <?php include("./assets/icons/magnifier.svg") ?>
                 </button>
             </div>
-            <script>
-                var mainContent;
-                onload = ()=> {mainContent = document.getElementById("book-displayer").innerHTML;}
-                var search_books = document.getElementById('search-books');
-                var reset_search = document.getElementById('reset-search');
-                var submit_search = document.getElementById('submit-search');
-                reset_search.onclick = () => {
-                    search_books.value = "";
-                    searchBooks(search_books.value);
-                } 
-                submit_search.onclick = () => searchBooks(search_books.value);
-                function searchBooks(str) {
-                    var title = document.getElementById('title-checkbox').checked;
-                    var author = document.getElementById('author-checkbox').checked;
-                    if (str == ""){
-                        document.getElementById("book-displayer").innerHTML = mainContent;
-                    }
-                    else{
-                        var xmlhttp = new XMLHttpRequest();
-                        xmlhttp.onreadystatechange = () => {
-                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                                document.getElementById("book-displayer").innerHTML = xmlhttp.responseText? xmlhttp.responseText:'<h3 style="color:#00e25e">No result</h3>';
-                            }
-                        };
-                        xmlhttp.open("GET", `view/pages/book_page/searchBooks.php?q=${str}&title=${JSON.stringify(title)}&author=${JSON.stringify(author)}`,true);
-                        xmlhttp.send();
-                    }
-                }
-            </script>
+            
 
             <?= drop_down(
                 $children = file_get_contents("./assets/icons/price.svg") . "<p>Price</p>",
@@ -108,6 +80,7 @@
             echo drop_down(
                 $children = file_get_contents("./assets/icons/book.svg") . "<p>Genres</p>",
                 $drop_down_children = $genre_checkboxes,
+                $id = 'genres'
             );
             ?>
 
@@ -131,6 +104,7 @@
                 ),
             ) ?>
         </form>
+        <script src="view/pages/book_page/filters/searchBooks.js"></script>
     </header>
 
     <main id="book-displayer">
