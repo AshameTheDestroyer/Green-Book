@@ -101,16 +101,21 @@ button:is(button):is(:hover, :focus-visible):not(:disabled).icon-button svg,
 input:is(button):is(:hover, :focus-visible):not(:disabled).icon-button svg {
   fill: var(--svg-active-colour);
 }
+button:is(button):is(:hover, :focus-visible):not(:disabled).emphasized-button svg,
+input:is(button):is(:hover, :focus-visible):not(:disabled).emphasized-button svg {
+  stroke: var(--svg-active-colour);
+}
 button:is(button):is(.emphasized-button, [type=submit]:not(.unemphasized-button)),
 input:is(button):is(.emphasized-button, [type=submit]:not(.unemphasized-button)) {
+  --svg-active-colour: var(--background-colour);
   font-weight: bold;
   color: var(--vibrant-colour);
   background-color: var(--main-colour);
 }
 button:is(button):is(.emphasized-button, [type=submit]:not(.unemphasized-button)) svg,
 input:is(button):is(.emphasized-button, [type=submit]:not(.unemphasized-button)) svg {
-  fill: var(--background-colour) !important;
-  stroke: var(--background-colour) !important;
+  fill: var(--background-colour);
+  stroke: var(--background-colour);
 }
 button:is(button):disabled,
 input:is(button):disabled {
@@ -163,23 +168,23 @@ input:is(button).anchor-button > a {
 }
 button[data-svg-active-colour=error],
 input[data-svg-active-colour=error] {
-  --svg-active-colour: var(--error-colour);
+  --svg-active-colour: var(--error-colour) !important;
 }
 button[data-svg-active-colour=warning],
 input[data-svg-active-colour=warning] {
-  --svg-active-colour: var(--warning-colour);
+  --svg-active-colour: var(--warning-colour) !important;
 }
 button[data-svg-active-colour=information],
 input[data-svg-active-colour=information] {
-  --svg-active-colour: var(--information-colour);
+  --svg-active-colour: var(--information-colour) !important;
 }
 button[data-svg-active-colour=success],
 input[data-svg-active-colour=success] {
-  --svg-active-colour: var(--success-colour);
+  --svg-active-colour: var(--success-colour) !important;
 }
 button[data-svg-active-colour=required],
 input[data-svg-active-colour=required] {
-  --svg-active-colour: var(--required-colour);
+  --svg-active-colour: var(--required-colour) !important;
 }
 button:is(input),
 input:is(input) {

@@ -3,9 +3,10 @@
 
 <?php include_once("./control/fetch_books.php") ?>
 <?php include_once("./control/fetch_genres.php") ?>
+<?php include_once("./view/components/slider/slider.php") ?>
+<?php include_once("./view/components/drop_down/drop_down.php") ?>
 <?php include_once("./view/components/input_field/input_field.php") ?>
 <?php include_once("./view/components/checkbox_field/checkbox_field.php") ?>
-<?php include_once("./view/components/drop_down/drop_down.php") ?>
 
 <link rel="stylesheet" href="./view/pages/book_page/book_page.css">
 <script src="./view/pages/book_page/book_page.js" defer></script>
@@ -64,21 +65,26 @@
             ) ?>
 
             <?php
+            $selected_genres = filter_input(INPUT_GET, "genres", FILTER_SANITIZE_STRING);
             $genre_checkboxes = "";
-
             foreach ($genres as $genre) {
                 $genre_checkboxes .= checkbox_field(
                     $name = $genre["title"],
                     $title = ucwords($genre["title"]),
-                    $checked = false,
+                    $checked = in_array($genre["title"], explode(",", $selected_genres)),
                     $optional = true,
                     $children = file_get_contents("./assets/icons/check.svg"),
                 );
             }
 
+            $genre_slider = slider(
+                $children = $genre_checkboxes,
+                $isVerticalNotHorizontal = true,
+            );
+
             echo drop_down(
                 $children = file_get_contents("./assets/icons/book.svg") . "<p>Genres</p>",
-                $drop_down_children = $genre_checkboxes,
+                $drop_down_children = $genre_slider,
             );
             ?>
 

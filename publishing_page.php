@@ -1,11 +1,9 @@
 <?php include_once("./view/layout/head.php") ?>
 <?php include_once("./view/components/header/header.php") ?>
 
-<?php
-if ($_SESSION["user"]["is_administrator"] == null) {
-    header("location: index.php");
-}
+<?php include_once("./control/validate_administrator.php"); ?>
 
+<?php
 global $publishingError;
 global $publishingErrorMessage;
 ?>

@@ -121,17 +121,23 @@ input {
             &.icon-button svg {
                 fill: var(--svg-active-colour);
             }
+
+            &.emphasized-button svg {
+                stroke: var(--svg-active-colour);
+            }
         }
 
         &:is(.emphasized-button, [type="submit"]:not(.unemphasized-button)) {
+            --svg-active-colour: var(--background-colour);
+
             font-weight: bold;
 
             color: var(--vibrant-colour);
             background-color: var(--main-colour);
 
             svg {
-                fill: var(--background-colour) !important;
-                stroke: var(--background-colour) !important;
+                fill: var(--background-colour);
+                stroke: var(--background-colour);
             }
         }
 
@@ -202,7 +208,7 @@ input {
     @each $colour in error, warning, information, success, required {
 
         &[data-svg-active-colour="#{$colour}"] {
-            --svg-active-colour: var(--#{$colour}-colour);
+            --svg-active-colour: var(--#{$colour}-colour) !important;
         }
     }
 

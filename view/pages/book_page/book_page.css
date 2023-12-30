@@ -19,6 +19,7 @@
   padding: calc(var(--padding) / 2) var(--padding);
   background-color: var(--background-colour);
   border-bottom: 2px solid var(--background-darker-colour);
+  transition: background-color 250ms;
   z-index: 1;
 }
 #book-page > header > form {
@@ -48,11 +49,25 @@
 #book-page > header > form .drop-down .drop-down-container .checkbox-field label {
   cursor: pointer;
 }
-#book-page > header > form .drop-down .drop-down-container > * {
+#book-page > header > form .drop-down .drop-down-container > *:not(.slider),
+#book-page > header > form .drop-down .drop-down-container .slider > * {
   transition: background-color 250ms;
 }
-#book-page > header > form .drop-down .drop-down-container > *:is(:hover, :focus-within) {
+#book-page > header > form .drop-down .drop-down-container > *:not(.slider):is(:hover, :focus-within),
+#book-page > header > form .drop-down .drop-down-container .slider > *:is(:hover, :focus-within) {
   background-color: var(--background-darker-colour);
+}
+#book-page > header > form .drop-down .drop-down-container .slider {
+  --item-padding: 1rem;
+  max-height: 40vh;
+  max-height: 40dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-inline: 0;
+}
+#book-page > header > form .drop-down .drop-down-container .slider > * {
+  padding: 1rem;
 }
 #book-page > header > form .drop-down#price-drop-down .drop-down-container {
   gap: 1rem;

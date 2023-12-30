@@ -26,6 +26,8 @@
         background-color: var(--background-colour);
         border-bottom: 2px solid var(--background-darker-colour);
 
+        transition: background-color 250ms;
+
         z-index: 1;
 
         &>form {
@@ -66,11 +68,29 @@
                         cursor: pointer;
                     }
 
-                    &>* {
+                    &>*:not(.slider),
+                    .slider>* {
                         transition: background-color 250ms;
 
                         &:is(:hover, :focus-within) {
                             background-color: var(--background-darker-colour);
+                        }
+                    }
+
+                    .slider {
+                        --item-padding: 1rem;
+
+                        max-height: 40vh;
+                        max-height: 40dvh;
+
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0;
+
+                        padding-inline: 0;
+
+                        &>* {
+                            padding: 1rem;
                         }
                     }
                 }

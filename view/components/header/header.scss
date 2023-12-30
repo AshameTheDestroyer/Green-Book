@@ -21,6 +21,8 @@
 
         background-color: var(--background-colour);
 
+        transition: background-color 250ms;
+
         h1 {
             font-size: min(3rem, 5vw);
 
@@ -45,14 +47,14 @@
 
         overflow: hidden;
 
+        transition: background-color 250ms;
+
         &>ul {
+            --item-padding: 10rem;
+
             list-style-type: none;
 
             height: 100%;
-
-            display: flex;
-            place-content: center space-around;
-            place-items: center space-around;
 
             margin: 0;
             padding: 0;
@@ -76,13 +78,7 @@
                     color: var(--background-colour);
                     background-color: var(--main-colour);
 
-                    cursor: pointer;
-
-                    transition: filter 250ms, padding 250ms;
-
-                    &::after {
-                        content: none;
-                    }
+                    transition: filter 250ms, padding 250ms, background-color 250ms;
 
                     &:is(:hover, :focus-visible) {
                         padding-inline: 4rem;
@@ -114,5 +110,84 @@
         #search-form {
             display: none;
         }
+    }
+}
+
+#dashboard-navigation-bar {
+    position: fixed;
+    inset: 0;
+    left: auto;
+
+    display: flex;
+    flex-direction: column;
+    place-content: end start;
+    place-items: end start;
+    gap: 2rem;
+
+    box-shadow: var(--box-shadow);
+    color: var(--background-colour);
+    background-color: var(--main-colour);
+
+    z-index: 20;
+
+    overflow: auto;
+
+    transition: transform 500ms;
+
+    &>div {
+        padding: 1rem;
+        padding-left: 0;
+        padding-bottom: 0;
+    }
+
+    &>ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+
+        margin: 0;
+        padding: 0;
+
+        &>li {
+
+            &>a {
+                text-align: end;
+                font-weight: bold;
+
+                display: flex;
+                flex-direction: row-reverse;
+                place-content: center end;
+                place-items: center end;
+                gap: 1rem;
+
+                padding: 2rem 6rem;
+
+                background-color: var(--main-colour);
+
+                transition: filter 250ms, padding 250ms;
+
+                svg {
+                    $size: 2.5rem;
+
+                    width: $size;
+                    height: $size;
+
+                    margin-right: -2rem;
+
+                    fill: var(--background-colour);
+                    stroke: none;
+                }
+
+                &:is(:hover, :focus-visible) {
+                    padding-block: 3rem;
+
+                    filter: brightness(120%);
+                }
+            }
+        }
+    }
+
+    &:not([data-is-open]) {
+        transform: translateX(100%);
     }
 }
