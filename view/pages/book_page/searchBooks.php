@@ -1,5 +1,7 @@
 <?php
     $q = strval($_GET['q']);
+    $title = json_decode($_GET['title']);
+    $author = json_decode($_GET['author']);
     $serverName = "localhost";
     $username = "root";
     $password = "";
@@ -9,9 +11,21 @@
         die("Connection has failed: " . $connection->connect_error);
     }
     mysqli_select_db($connection,$databaseName);
-    $stmt = $connection->prepare("SELECT * FROM books WHERE title LIKE ?");
+    $sql = "";
+    if($title){
+        $sql = "SELECT * FROM books WHERE title LIKE ?".($author?" OR author LIKE ?":"");
+    }
+    else{
+        $sql = $author?"SELECT * FROM books WHERE author LIKE ?":"";
+    }
+    $stmt = $connection->prepare($sql);
     $searchTerm = '%' . $q . '%';
-    $stmt->bind_param("s", $searchTerm);
+    if($title && $author){
+        $stmt->bind_param("ss", $searchTerm,$searchTerm);
+    }
+    elseif($title || $author){
+        $stmt->bind_param("s", $searchTerm);
+    }
     $stmt->execute();
     $results = $stmt->get_result();
     $stmt->close();
@@ -32,14 +46,14 @@
                 <div>
                     <?php for ($i = 5; $i > 0; $i--): ?>
                         <span>
-                            <?php include("./assets/icons/star.svg") ?>
+                            <?php include("../../../assets/icons/star.svg"); ?>
                         </span>
                     <?php endfor ?>
                 </div>
                 <div>
                     <?php for ($i = $result["rating"]; $i > 0; $i--): ?>
                         <span data-is-half="<?= ($i == 0.5) ? "true" : "" ?>">
-                            <?php include("./assets/icons/star.svg") ?>
+                            <?php include("../../../assets/icons/star.svg") ?>
                         </span>
                     <?php endfor ?>
                 </div>
