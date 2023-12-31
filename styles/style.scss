@@ -21,14 +21,14 @@
 
     --quarter-transparent-colour: hsl(0, 0%, 0%, 75%);
     --half-transparent-colour: hsl(0, 0%, 0%, 50%);
-    --three-quarter-transparent-colour: hsl(0, 0%, 0%, 25%);
+    --three-quarters-transparent-colour: hsl(0, 0%, 0%, 25%);
 
     --box-shadow-thickness: 1px;
     --box-shadow-blurriness: 5px;
-    --box-shadow: calc(+1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarter-transparent-colour),
-        calc(-1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarter-transparent-colour),
-        calc(+1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarter-transparent-colour),
-        calc(-1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarter-transparent-colour);
+    --box-shadow: calc(+1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarters-transparent-colour),
+        calc(-1 * var(--box-shadow-thickness)) calc(+1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarters-transparent-colour),
+        calc(+1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarters-transparent-colour),
+        calc(-1 * var(--box-shadow-thickness)) calc(-1 * var(--box-shadow-thickness)) var(--box-shadow-blurriness) var(--three-quarters-transparent-colour);
 
     --header-height: 10.5rem;
 

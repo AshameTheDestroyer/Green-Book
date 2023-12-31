@@ -12,13 +12,13 @@
 
 <main id="book-page">
     <header>
-        <?php if ($_SESSION["user"]["is_administrator"] == true): ?>
-            <button class="emphasized-button anchor-button">
-                <a class="uncolourized-text" href="./publishing_page.php">Publish a Book</a>
-            </button>
-        <?php endif ?>
-
         <form action="<?= $_SERVER["PHP_SELF"] ?>" method="GET">
+            <?php if ($_SESSION["user"]["is_administrator"] == true): ?>
+                <button class="emphasized-button anchor-button" type="button">
+                    <a class="uncolourized-text" href="./publishing_page.php">Publish a Book</a>
+                </button>
+            <?php endif ?>
+
             <div id="search-input-field">
                 <input id="search-input" type="search" name="search-term" placeholder="Write a book's name...">
 
@@ -107,7 +107,7 @@
         </form>
     </header>
 
-    <main id="book-displayer"></main>
+    <main id="book-page-content"></main>
 </main>
 
 <?php include_once("./view/components/footer/footer.php") ?>

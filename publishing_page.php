@@ -25,6 +25,18 @@ global $publishingErrorMessage;
             <?= input_field(
                 $name = "title",
                 $title = "Title",
+                $type = "text",
+                $value = null,
+                $pattern = null,
+                $pattern_message = null,
+                $id = null,
+                $optional = false,
+                $minimum = null,
+                $maximum = null,
+                $step = null,
+                $accept = null,
+                $minimum_length = 0,
+                $maximum_length = 32,
             ) ?>
             <?= input_field(
                 $name = "author",
@@ -35,6 +47,12 @@ global $publishingErrorMessage;
                 $pattern_message = null,
                 $id = null,
                 $optional = true,
+                $minimum = null,
+                $maximum = null,
+                $step = null,
+                $accept = null,
+                $minimum_length = 0,
+                $maximum_length = 32,
             ) ?>
             <?= input_field(
                 $name = "price",

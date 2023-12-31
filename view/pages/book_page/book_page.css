@@ -1,3 +1,7 @@
+#main-header {
+  box-shadow: none;
+}
+
 #book-page {
   --padding: 4rem;
   position: relative;
@@ -9,16 +13,12 @@
 #book-page > header {
   position: sticky;
   top: var(--header-height);
-  display: flex;
-  flex-wrap: wrap;
-  place-content: stretch center;
-  place-items: stretch center;
-  gap: 2rem;
   margin: calc(-1 * var(--padding));
   margin-bottom: calc(-1 * var(--padding) / 2);
-  padding: calc(var(--padding) / 2) var(--padding);
+  padding: 2rem;
   background-color: var(--background-colour);
-  border-bottom: 2px solid var(--background-darker-colour);
+  border-bottom: 2px solid var(--back1ground-darker-colour);
+  box-shadow: 0 calc(1 * var(--box-shadow-thickness)) calc(var(--box-shadow-blurriness) / 2) var(--half-transparent-colour);
   transition: background-color 250ms;
   z-index: 2;
 }
@@ -122,6 +122,7 @@
 }
 #book-page #book-displayer .book-card > header .star-displayer {
   display: grid;
+  z-index: 1;
 }
 #book-page #book-displayer .book-card > header .star-displayer > div {
   display: flex;

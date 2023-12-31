@@ -14,7 +14,7 @@ window.addEventListener("scroll", _e => {
 
 
 const
-    bookDisplayer = document.querySelector("#book-displayer"),
+    bookPageContent = document.querySelector("#book-page-content"),
     bookForm = document.querySelector("form"),
     searchInput = bookForm.querySelector("#search-input-field>input"),
     titleCheckbox = bookForm.querySelector("#title-checkbox"),
@@ -34,7 +34,7 @@ function fetchBooks(searchTerm) {
     xmlHttp.addEventListener("readystatechange", _e => {
         if (xmlHttp.readyState != 4 || xmlHttp.status != 200) { return; }
 
-        bookDisplayer.innerHTML = xmlHttp.responseText ?? "<h3 style=\"color:#00e25e\">No result</h3>";
+        bookPageContent.innerHTML = xmlHttp.responseText ?? "<h3 style=\"color:#00e25e\">No result</h3>";
     });
 
     if (searchInput == "") {

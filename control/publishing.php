@@ -3,6 +3,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
 }
 
+define("mb", 1048576);
+
 $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_STRING);
 $author = filter_input(INPUT_POST, "author", FILTER_SANITIZE_STRING);
 $price = filter_input(INPUT_POST, "price", FILTER_SANITIZE_STRING);
@@ -31,7 +33,7 @@ function write_file($file, $folder_name): string
     return $file_new_name;
 }
 
-if (!$cover["error"] and $cover["size"] > 1048576) {
+if (!$cover["error"] and $cover["size"] > 1 * mb) {
     $publishingError = "Excessive File Size";
     $publishingErrorMessage = "Cover file size has exceeded one megabyte.";
 
@@ -45,9 +47,9 @@ if (!$cover["error"] and !($cover_url = write_file($cover, "covers"))) {
     return;
 }
 
-if (!$pdf["error"] and $pdf["size"] > 4194304) {
+if (!$pdf["error"] and $pdf["size"] > 6 * mb) {
     $publishingError = "Excessive File Size";
-    $publishingErrorMessage = "PDF file size has exceeded four megabytes";
+    $publishingErrorMessage = "PDF file size has exceeded six megabytes";
 
     return;
 }
@@ -61,25 +63,31 @@ if (!$pdf["error"] and !($pdf_url = write_file($pdf, "pdfs"))) {
 
 $rating /= 2;
 
-$query = "
-    INSERT INTO books(title, author, price, page_count, rating, cover_url, url)
-    VALUES ('$title', '$author', '$price', '$page_count', '$rating', '$cover_url', '$pdf_url')
-";
-$connection->execute_query($query);
-
-$query = "SELECT * FROM books WHERE id = (SELECT MAX(id) FROM books) LIMIT 1";
-$result = $connection->execute_query($query);
-$published_book = $result->fetch_all(MYSQLI_ASSOC)[0];
-
-foreach ($genre_inputs as $genre) {
-    $book_id = $published_book["id"];
-    $genre_id = $genre["id"];
+try {
 
     $query = "
+    INSERT INTO books(title, author, price, page_count, rating, cover_url, url)
+    VALUES ('$title', '$author', '$price', '$page_count', '$rating', '$cover_url', '$pdf_url')
+    ";
+    $connection->execute_query($query);
+
+
+    $query = "SELECT * FROM books WHERE id = (SELECT MAX(id) FROM books) LIMIT 1";
+    $result = $connection->execute_query($query);
+    $published_book = $result->fetch_all(MYSQLI_ASSOC)[0];
+
+    foreach ($genre_inputs as $genre) {
+        $book_id = $published_book["id"];
+        $genre_id = $genre["id"];
+
+        $query = "
         INSERT INTO books_to_genres(book_id, genre_id)
         VALUES ('$book_id', '$genre_id')
     ";
-    $connection->execute_query($query);
+        $connection->execute_query($query);
+    }
+} catch (Exception $e) {
+    print_r($e->getMessage());
 }
 
 header("location: publishing_page.php");
