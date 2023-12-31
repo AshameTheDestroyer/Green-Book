@@ -8,7 +8,9 @@ if ($connection->connect_error) {
     die("Connection has failed: " . $connection->connect_error);
 }
 
-$pagination_index = filter_input(INPUT_GET, "pagination_index", FILTER_SANITIZE_STRING) ?? "1";
+define("BOOKS_PER_PAGE", 6);
+
+$pagination_index = filter_input(INPUT_GET, "pagination-index", FILTER_SANITIZE_STRING) ?? "1";
 
 $search_term = filter_input(INPUT_GET, "search-term", FILTER_SANITIZE_STRING);
 $title = filter_input(INPUT_GET, "title", FILTER_SANITIZE_STRING);
@@ -82,8 +84,33 @@ if (count($genre_inputs) > 0) {
 $result = $connection->execute_query($query);
 $books = $result->fetch_all(MYSQLI_ASSOC);
 
+$maximum_page_count = ceil(count($books) / BOOKS_PER_PAGE);
+$start = BOOKS_PER_PAGE * ($pagination_index - 1);
+
 $connection->close();
 ?>
+
+<?php if (count($books) == 0): ?>
+    <main id="no-book-message">
+        <h1>No Book Matches The Criteria</h1>
+        <p>There is no book found that matches the provided filtering criteria.</p>
+    </main>
+    <?php return ?>
+<?php endif ?>
+
+<?php if ($pagination_index > $maximum_page_count): ?>
+    <main id="no-book-message">
+        <h1>Pagination Index is out of Range</h1>
+        <p>There's no page with that index, how did you get to this page?</p>
+        <?= $pagination_index ?>
+        <?= $maximum_page_count ?>
+    </main>
+    <?php return ?>
+<?php endif ?>
+
+<?php $books = array_slice($books, $start, BOOKS_PER_PAGE); ?>
+
+<?php include_once("../view/components/slider/slider.php") ?>
 
 <main id="book-displayer">
     <?php foreach ($books as $book): ?>
@@ -95,7 +122,8 @@ $connection->close();
 
             <header>
                 <p>
-                    <?= $book["price"] ?>$
+                    <?= str_pad(floor($book["price"]), 3, "0", STR_PAD_LEFT) . "." .
+                        str_pad(round($book["price"] - floor($book["price"]), 2) * 100, 2, "0", STR_PAD_RIGHT) ?>$
                 </p>
                 <div class="star-displayer" title="This book has a rating of <?= $book["rating"] * 2 ?>/10.">
                     <div>
@@ -140,5 +168,27 @@ $connection->close();
 </main>
 
 <section id="pagination-button-displayer">
-    <?= $pagination_index ?>
+    <button class="pagination-step-button" <?= ($pagination_index <= 1) ? "disabled" : "" ?> type="button"
+        title="First Page." data-step-type="first">&lt;&lt;</button>
+    <button class="pagination-step-button" <?= ($pagination_index <= 1) ? "disabled" : "" ?> type="button"
+        title="Previous Page." data-step-type="previous">&lt;</button>
+
+    <?php
+    $pagination_buttons = "";
+    for ($i = 1; $i <= $maximum_page_count; $i++) {
+        $emphasized_class = ($i == $pagination_index) ? "emphasized-button" : "";
+        $pagination_buttons .= "
+                <button class=\"$emphasized_class\" type=\"button\">$i</button>
+            ";
+    }
+
+    echo slider(
+        $children = $pagination_buttons,
+    );
+    ?>
+
+    <button class="pagination-step-button" <?= ($pagination_index >= $maximum_page_count) ? "disabled" : "" ?>
+        type="button" title="Next Page." data-step-type="next">&gt;</button>
+    <button class="pagination-step-button" <?= ($pagination_index >= $maximum_page_count) ? "disabled" : "" ?>
+        type="button" title="Last Page." data-step-type="last">&gt;&gt;</button>
 </section>

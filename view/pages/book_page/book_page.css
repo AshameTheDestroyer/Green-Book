@@ -17,7 +17,6 @@
   margin-bottom: calc(-1 * var(--padding) / 2);
   padding: 2rem;
   background-color: var(--background-colour);
-  border-bottom: 2px solid var(--back1ground-darker-colour);
   box-shadow: 0 calc(1 * var(--box-shadow-thickness)) calc(var(--box-shadow-blurriness) / 2) var(--half-transparent-colour);
   transition: background-color 250ms;
   z-index: 2;
@@ -81,12 +80,19 @@
 #book-page > header.sticking-header:not(:hover, :focus-within) {
   background-color: color-mix(in srgb, var(--background-colour) 60%, transparent 40%);
 }
-#book-page #book-displayer {
+#book-page #book-page-content {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  place-content: center;
+  gap: 4rem;
+}
+#book-page #book-page-content #book-displayer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(28rem, 35rem));
   gap: 2rem;
 }
-#book-page #book-displayer .book-card {
+#book-page #book-page-content #book-displayer .book-card {
   --card-padding: 1rem;
   position: relative;
   max-width: calc(100vw - var(--padding) * 2);
@@ -98,10 +104,10 @@
   overflow: hidden;
   cursor: pointer;
 }
-#book-page #book-displayer .book-card > form {
+#book-page #book-page-content #book-displayer .book-card > form {
   display: none;
 }
-#book-page #book-displayer .book-card > header {
+#book-page #book-page-content #book-displayer .book-card > header {
   position: absolute;
   top: var(--card-padding);
   inset-inline: var(--card-padding);
@@ -110,82 +116,114 @@
   place-items: center space-between;
   z-index: 1;
 }
-#book-page #book-displayer .book-card > header > p {
+#book-page #book-page-content #book-displayer .book-card > header > p {
   font-weight: bold;
   position: relative;
   top: calc(-1 * var(--card-padding));
   left: calc(-1 * var(--card-padding));
+  width: 7ch;
   padding: calc(var(--card-padding) * 3 / 4);
   color: var(--background-colour);
   border-bottom-right-radius: 1.5rem;
   background-color: var(--main-colour);
 }
-#book-page #book-displayer .book-card > header .star-displayer {
+#book-page #book-page-content #book-displayer .book-card > header .star-displayer {
   display: grid;
   z-index: 1;
 }
-#book-page #book-displayer .book-card > header .star-displayer > div {
+#book-page #book-page-content #book-displayer .book-card > header .star-displayer > div {
   display: flex;
   grid-row: 1;
   grid-column: 1;
 }
-#book-page #book-displayer .book-card > header .star-displayer > div > span {
+#book-page #book-page-content #book-displayer .book-card > header .star-displayer > div > span {
   width: 2.5rem;
   height: 2.5rem;
   margin-inline: -0.3rem;
-  overflow: hidden;
 }
-#book-page #book-displayer .book-card > header .star-displayer > div > span > svg {
+#book-page #book-page-content #book-displayer .book-card > header .star-displayer > div > span > svg {
   width: 2.5rem;
   height: 2.5rem;
   fill: var(--gray-colour);
+  stroke: var(--background-colour);
 }
-#book-page #book-displayer .book-card > header .star-displayer > div > span[data-is-half=true] {
+#book-page #book-page-content #book-displayer .book-card > header .star-displayer > div > span[data-is-half=true] {
   width: 1.25rem;
 }
-#book-page #book-displayer .book-card > header .star-displayer > div > span:first-child {
+#book-page #book-page-content #book-displayer .book-card > header .star-displayer > div > span:first-child {
   margin-left: 0;
 }
-#book-page #book-displayer .book-card > header .star-displayer > div > span:last-child {
+#book-page #book-page-content #book-displayer .book-card > header .star-displayer > div > span:last-child {
   margin-right: 0;
 }
-#book-page #book-displayer .book-card > header .star-displayer > div:last-child > span svg {
+#book-page #book-page-content #book-displayer .book-card > header .star-displayer > div:first-child > span > svg {
+  filter: drop-shadow(3px 3px 3px black);
+}
+#book-page #book-page-content #book-displayer .book-card > header .star-displayer > div:last-child > span {
+  overflow: hidden;
+  z-index: 1;
+}
+#book-page #book-page-content #book-displayer .book-card > header .star-displayer > div:last-child > span > svg {
   fill: var(--warning-colour) !important;
 }
-#book-page #book-displayer .book-card > figure {
+#book-page #book-page-content #book-displayer .book-card > figure {
   position: relative;
   width: 100%;
   height: 100%;
 }
-#book-page #book-displayer .book-card > figure > img {
+#book-page #book-page-content #book-displayer .book-card > figure > img {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#book-page #book-displayer .book-card > figure > img:first-child {
+#book-page #book-page-content #book-displayer .book-card > figure > img:first-child {
   width: calc(100% + 2rem);
   height: calc(100% + 2rem);
   filter: blur(10px) brightness(80%);
 }
-#book-page #book-displayer .book-card > figure > img:last-child {
+#book-page #book-page-content #book-displayer .book-card > figure > img:last-child {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
-#book-page #book-displayer .book-card > figure::after {
+#book-page #book-page-content #book-displayer .book-card > figure::after {
   content: "";
   position: absolute;
   inset: 0;
   background-image: linear-gradient(transparent, var(--quarter-transparent-colour));
 }
-#book-page #book-displayer .book-card > figcaption {
+#book-page #book-page-content #book-displayer .book-card > figcaption {
   position: absolute;
   bottom: var(--card-padding);
   left: var(--card-padding);
   color: var(--background-colour);
 }
-#book-page #book-displayer .book-card:is(:hover, :focus-within) {
+#book-page #book-page-content #book-displayer .book-card:is(:hover, :focus-within) {
   transform: scale(1.02);
+}
+#book-page #book-page-content #pagination-button-displayer {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  gap: 2rem;
+}
+#book-page #book-page-content #pagination-button-displayer .slider {
+  --item-padding: 1rem;
+}
+#book-page #book-page-content #pagination-button-displayer button {
+  height: calc(2ic + 1rem);
+  aspect-ratio: 1;
+  padding: 0.5rem;
+  border-radius: 100%;
+}
+#book-page #book-page-content #pagination-button-displayer button.hidden-button {
+  visibility: hidden;
+}
+#book-page #book-page-content #no-book-message {
+  display: flex;
+  place-self: center;
+  flex-direction: column;
+  gap: 2rem;
 }

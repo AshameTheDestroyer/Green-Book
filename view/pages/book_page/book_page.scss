@@ -22,7 +22,6 @@
         padding: 2rem;
 
         background-color: var(--background-colour);
-        border-bottom: 2px solid var(--back1ground-darker-colour);
         box-shadow: 0 calc(+1 * var(--box-shadow-thickness)) calc(var(--box-shadow-blurriness) / 2) var(--half-transparent-colour);
 
         transition: background-color 250ms;
@@ -114,159 +113,210 @@
         }
     }
 
-    #book-displayer {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(28rem, 35rem));
-        gap: 2rem;
+    #book-page-content {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        place-content: center;
+        gap: 4rem;
 
-        .book-card {
-            --card-padding: 1rem;
+        #book-displayer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(28rem, 35rem));
+            gap: 2rem;
 
-            position: relative;
-            max-width: calc(100vw - var(--padding) * 2);
-            aspect-ratio: 13 / 16;
+            .book-card {
+                --card-padding: 1rem;
 
-            border-radius: 1.5rem;
-            background-color: var(--background-darker-colour);
-            box-shadow: var(--box-shadow);
+                position: relative;
+                max-width: calc(100vw - var(--padding) * 2);
+                aspect-ratio: 13 / 16;
 
-            transition: transform 250ms;
+                border-radius: 1.5rem;
+                background-color: var(--background-darker-colour);
+                box-shadow: var(--box-shadow);
 
-            overflow: hidden;
+                transition: transform 250ms;
 
-            cursor: pointer;
+                overflow: hidden;
 
-            &>form {
-                display: none;
-            }
+                cursor: pointer;
 
-            &>header {
-                position: absolute;
-                top: var(--card-padding);
-                inset-inline: var(--card-padding);
-
-                display: flex;
-                place-content: center space-between;
-                place-items: center space-between;
-
-                z-index: 1;
-
-                &>p {
-                    font-weight: bold;
-
-                    position: relative;
-                    top: calc(-1 * var(--card-padding));
-                    left: calc(-1 * var(--card-padding));
-
-                    padding: calc(var(--card-padding) * 3 / 4);
-
-                    color: var(--background-colour);
-                    border-bottom-right-radius: 1.5rem;
-                    background-color: var(--main-colour);
+                &>form {
+                    display: none;
                 }
 
-                .star-displayer {
-                    display: grid;
+                &>header {
+                    position: absolute;
+                    top: var(--card-padding);
+                    inset-inline: var(--card-padding);
+
+                    display: flex;
+                    place-content: center space-between;
+                    place-items: center space-between;
 
                     z-index: 1;
 
-                    &>div {
-                        display: flex;
+                    &>p {
+                        font-weight: bold;
 
-                        grid-row: 1;
-                        grid-column: 1;
+                        position: relative;
+                        top: calc(-1 * var(--card-padding));
+                        left: calc(-1 * var(--card-padding));
+                        width: 7ch;
 
-                        &>span {
-                            $margin-inline: -0.3rem;
-                            $size: 2.5rem;
+                        padding: calc(var(--card-padding) * 3 / 4);
+
+                        color: var(--background-colour);
+                        border-bottom-right-radius: 1.5rem;
+                        background-color: var(--main-colour);
+                    }
+
+                    .star-displayer {
+                        display: grid;
+
+                        z-index: 1;
+
+                        &>div {
+                            display: flex;
+
+                            grid-row: 1;
+                            grid-column: 1;
+
+                            &>span {
+                                $margin-inline: -0.3rem;
+                                $size: 2.5rem;
+
+                                width: $size;
+                                height: $size;
+
+                                margin-inline: $margin-inline;
+
+                                &>svg {
+                                    width: $size;
+                                    height: $size;
+
+                                    fill: var(--gray-colour);
+                                    stroke: var(--background-colour);
+                                }
+
+                                &[data-is-half=true] {
+                                    width: calc($size / 2);
+                                }
+
+                                &:first-child {
+                                    margin-left: 0;
+                                }
+
+                                &:last-child {
+                                    margin-right: 0;
+                                }
+                            }
+
+                            &:first-child>span>svg {
+                                filter: drop-shadow(3px 3px 3px black);
+                            }
+
+                            &:last-child>span {
+                                overflow: hidden;
+
+                                z-index: 1;
+
+                                &>svg {
+                                    fill: var(--warning-colour) !important;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &>figure {
+                    $size: 100%;
+
+                    position: relative;
+                    width: $size;
+                    height: $size;
+
+                    &>img {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+
+                        &:first-child {
+                            $size: calc(100% + 2rem);
 
                             width: $size;
                             height: $size;
 
-                            margin-inline: $margin-inline;
-
-                            overflow: hidden;
-
-                            &>svg {
-                                width: $size;
-                                height: $size;
-
-                                fill: var(--gray-colour);
-                            }
-
-                            &[data-is-half=true] {
-                                width: calc($size / 2);
-                            }
-
-                            &:first-child {
-                                margin-left: 0;
-                            }
-
-                            &:last-child {
-                                margin-right: 0;
-                            }
+                            filter: blur(10px) brightness(80%);
                         }
 
-                        &:last-child>span svg {
-                            fill: var(--warning-colour) !important;
+                        &:last-child {
+                            $size: 100%;
+
+                            width: $size;
+                            height: $size;
+
+                            object-fit: contain;
                         }
                     }
-                }
-            }
 
-            &>figure {
-                $size: 100%;
+                    &::after {
+                        content: "";
 
-                position: relative;
-                width: $size;
-                height: $size;
+                        position: absolute;
+                        inset: 0;
 
-                &>img {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-
-                    &:first-child {
-                        $size: calc(100% + 2rem);
-
-                        width: $size;
-                        height: $size;
-
-                        filter: blur(10px) brightness(80%);
-                    }
-
-                    &:last-child {
-                        $size: 100%;
-
-                        width: $size;
-                        height: $size;
-
-                        object-fit: contain;
+                        background-image: linear-gradient(transparent, var(--quarter-transparent-colour));
                     }
                 }
 
-                &::after {
-                    content: "";
-
+                &>figcaption {
                     position: absolute;
-                    inset: 0;
+                    bottom: var(--card-padding);
+                    left: var(--card-padding);
 
-                    background-image: linear-gradient(transparent, var(--quarter-transparent-colour));
+                    color: var(--background-colour);
+                }
+
+                &:is(:hover, :focus-within) {
+                    transform: scale(1.02);
                 }
             }
+        }
 
-            &>figcaption {
-                position: absolute;
-                bottom: var(--card-padding);
-                left: var(--card-padding);
+        #pagination-button-displayer {
+            display: flex;
+            place-content: center;
+            place-items: center;
+            gap: 2rem;
 
-                color: var(--background-colour);
+            .slider {
+                --item-padding: 1rem;
             }
 
-            &:is(:hover, :focus-within) {
-                transform: scale(1.02);
+            button {
+                $padding: 0.5rem;
+
+                height: calc(2ic + $padding * 2);
+                aspect-ratio: 1;
+
+                padding: $padding;
+
+                border-radius: 100%;
+
+                &.hidden-button {
+                    visibility: hidden;
+                }
             }
+        }
+
+        #no-book-message {
+            display: flex;
+            place-self: center;
+            flex-direction: column;
+            gap: 2rem;
         }
     }
 }
