@@ -1,35 +1,33 @@
 <?php
-    $q = strval($_GET['q']);
-    $title = json_decode($_GET['title']);
-    $author = json_decode($_GET['author']);
-    $serverName = "localhost";
-    $username = "root";
-    $password = "";
-    $databaseName = "green_book";
-    $connection = new mysqli($serverName, $username, $password, $databaseName);
-    if ($connection->connect_error) {
-        die("Connection has failed: " . $connection->connect_error);
-    }
-    mysqli_select_db($connection,$databaseName);
-    $sql = "";
-    if($title){
-        $sql = "SELECT * FROM books WHERE title LIKE ?".($author?" OR author LIKE ?":"");
-    }
-    else{
-        $sql = $author?"SELECT * FROM books WHERE author LIKE ?":"";
-    }
-    $stmt = $connection->prepare($sql);
-    $searchTerm = '%' . $q . '%';
-    if($title && $author){
-        $stmt->bind_param("ss", $searchTerm,$searchTerm);
-    }
-    elseif($title || $author){
-        $stmt->bind_param("s", $searchTerm);
-    }
-    $stmt->execute();
-    $results = $stmt->get_result();
-    $stmt->close();
-    $connection->close();
+$q = strval($_GET['q']);
+$title = json_decode($_GET['title']);
+$author = json_decode($_GET['author']);
+$serverName = "localhost";
+$username = "root";
+$password = "";
+$databaseName = "book_store";
+$connection = new mysqli($serverName, $username, $password, $databaseName);
+if ($connection->connect_error) {
+    die("Connection has failed: " . $connection->connect_error);
+}
+mysqli_select_db($connection, $databaseName);
+$sql = "";
+if ($title) {
+    $sql = "SELECT * FROM books WHERE title LIKE ?" . ($author ? " OR author LIKE ?" : "");
+} else {
+    $sql = $author ? "SELECT * FROM books WHERE author LIKE ?" : "";
+}
+$stmt = $connection->prepare($sql);
+$searchTerm = '%' . $q . '%';
+if ($title && $author) {
+    $stmt->bind_param("ss", $searchTerm, $searchTerm);
+} elseif ($title || $author) {
+    $stmt->bind_param("s", $searchTerm);
+}
+$stmt->execute();
+$results = $stmt->get_result();
+$stmt->close();
+$connection->close();
 ?>
 <?php foreach ($results as $result): ?>
     <div class="book-card" tabindex="0">

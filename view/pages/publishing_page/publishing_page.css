@@ -24,6 +24,44 @@
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 2rem;
 }
+#publishing-page > form > main .drop-down {
+  display: flex;
+  place-content: center;
+  place-items: center;
+}
+#publishing-page > form > main .drop-down > button > svg {
+  width: 3rem;
+  height: 3rem;
+}
+#publishing-page > form > main .drop-down .drop-down-container .checkbox-field,
+#publishing-page > form > main .drop-down .drop-down-container .checkbox-field label {
+  cursor: pointer;
+}
+#publishing-page > form > main .drop-down .drop-down-container > *:not(.slider),
+#publishing-page > form > main .drop-down .drop-down-container .slider > * {
+  transition: background-color 250ms;
+}
+#publishing-page > form > main .drop-down .drop-down-container > *:not(.slider):is(:hover, :focus-within),
+#publishing-page > form > main .drop-down .drop-down-container .slider > *:is(:hover, :focus-within) {
+  background-color: var(--background-darker-colour);
+}
+#publishing-page > form > main .drop-down .drop-down-container > *:not(.slider) button,
+#publishing-page > form > main .drop-down .drop-down-container .slider > * button {
+  width: 3rem;
+  height: 3rem;
+}
+#publishing-page > form > main .drop-down .drop-down-container .slider {
+  --item-padding: 1rem;
+  max-height: 30vh;
+  max-height: 30dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-inline: 0;
+}
+#publishing-page > form > main .drop-down .drop-down-container .slider > * {
+  padding: 1rem;
+}
 #publishing-page > form > main #file-input-container {
   grid-column: 1/-1;
   display: grid;

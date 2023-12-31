@@ -30,6 +30,63 @@
             grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
             gap: 2rem;
 
+            .drop-down {
+                display: flex;
+                place-content: center;
+                place-items: center;
+
+                &>button {
+
+                    &>svg {
+                        $size: 3rem;
+
+                        width: $size;
+                        height: $size;
+                    }
+                }
+
+                .drop-down-container {
+
+                    .checkbox-field,
+                    .checkbox-field label {
+                        cursor: pointer;
+                    }
+
+                    &>*:not(.slider),
+                    .slider>* {
+                        transition: background-color 250ms;
+
+                        &:is(:hover, :focus-within) {
+                            background-color: var(--background-darker-colour);
+                        }
+
+                        button {
+                            $size: 3rem;
+
+                            width: $size;
+                            height: $size;
+                        }
+                    }
+
+                    .slider {
+                        --item-padding: 1rem;
+
+                        max-height: 30vh;
+                        max-height: 30dvh;
+
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0;
+
+                        padding-inline: 0;
+
+                        &>* {
+                            padding: 1rem;
+                        }
+                    }
+                }
+            }
+
             #file-input-container {
                 grid-column: 1 / -1;
 

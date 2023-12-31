@@ -16,8 +16,16 @@ labelContainerButtons.forEach(button => button.addEventListener("click", e =>
 const fileInputFields = [...document.querySelectorAll(".input-field[data-is-file-input]")];
 fileInputFields.forEach(inputField =>
     inputField.querySelector("input").addEventListener("change", e => {
-        inputField.setAttribute("data-uploaded-file", e.target.value);
-        inputField.querySelector("button").classList.add("emphasized-button");
+        const button = inputField.querySelector("button");
+
+        if (e.target.value.trim() != "") {
+            inputField.setAttribute("data-uploaded-file", e.target.value.trim());
+            button.classList.add("emphasized-button");
+            return;
+        }
+
+        inputField.removeAttribute("data-uploaded-file");
+        button.classList.remove("emphasized-button");
     }),
 );
 

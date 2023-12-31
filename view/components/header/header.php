@@ -48,7 +48,9 @@ $dashboards = [
         <nav id="main-navigation-bar">
             <?php
             $genre_anchors = "";
-            foreach ($genres as $genre) {
+            $genres_and_all = $genres;
+            array_unshift($genres_and_all, ["title" => "all"]);
+            foreach ($genres_and_all as $genre) {
                 $genre_rendered_title = ucwords($genre["title"]);
                 $genre_anchors .= "
                         <li>

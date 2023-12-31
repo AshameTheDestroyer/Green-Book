@@ -10,7 +10,10 @@ global $publishingErrorMessage;
 
 <?php include_once("./control/publishing.php") ?>
 <?php include_once("./view/components/modal/modal.php") ?>
+<?php include_once("./view/components/slider/slider.php") ?>
+<?php include_once("./view/components/drop_down/drop_down.php") ?>
 <?php include_once("./view/components/input_field/input_field.php") ?>
+<?php include_once("./view/components/checkbox_field/checkbox_field.php") ?>
 
 <link rel="stylesheet" href="./view/pages/publishing_page/publishing_page.css">
 
@@ -70,6 +73,27 @@ global $publishingErrorMessage;
                 $minimum = 0,
                 $maximum = 10,
             ) ?>
+            <?php
+            foreach ($genres as $genre) {
+                $genre_checkboxes .= checkbox_field(
+                    $name = $genre["title"],
+                    $title = ucwords($genre["title"]),
+                    $checked = false,
+                    $optional = true,
+                    $children = file_get_contents("./assets/icons/check.svg"),
+                );
+            }
+
+            $genre_slider = slider(
+                $children = $genre_checkboxes,
+                $isVerticalNotHorizontal = true,
+            );
+
+            echo drop_down(
+                $children = file_get_contents("./assets/icons/book.svg") . "<p>Genres</p>",
+                $drop_down_children = $genre_slider,
+            );
+            ?>
 
             <section id="file-input-container" class="button-displayer">
                 <?= input_field(
@@ -87,7 +111,7 @@ global $publishingErrorMessage;
                     $accept = "image/*",
                 ) ?>
                 <?= input_field(
-                    $name = "pdf-file",
+                    $name = "pdf",
                     $title = file_get_contents("./assets/icons/book.svg") . "<p>Upload PDF</p>",
                     $type = "file",
                     $value = null,
