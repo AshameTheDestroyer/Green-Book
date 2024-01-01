@@ -2,7 +2,7 @@
 $serverName = "localhost";
 $username = "root";
 $password = "";
-$databaseName = "green_book";
+$databaseName = "book_store";
 $connection = new mysqli($serverName, $username, $password, $databaseName);
 if ($connection->connect_error) {
     die("Connection has failed: " . $connection->connect_error);

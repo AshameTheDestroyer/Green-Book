@@ -1,10 +1,12 @@
-.advantages{
+.advantages {
     display: flex;
-    justify-content: space-evenly;
-    margin: 60px 40px;
+    place-content: center space-evenly;
+    place-items: center space-evenly;
+    gap: 2rem;
 }
-@media (max-width: 720px) {    
-    #home-page{
+
+@media (max-width: 720px) {
+    #home-page {
         padding: 2rem !important;
     }
 }

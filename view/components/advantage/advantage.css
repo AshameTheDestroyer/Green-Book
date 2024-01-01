@@ -1,13 +1,14 @@
-.advantage{
+.advantage {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     justify-content: space-between;
     padding: 0 10px;
+    gap: 2rem;
 }
 
-.advantage .icone-container{
+.advantage .icon-container {
     background: #00e25e;
     color: #fff;
     height: 60px;
@@ -19,11 +20,11 @@
     justify-content: center;
 }
 
-.advantage h4{
+.advantage h4 {
     text-transform: uppercase;
     font-weight: 600;
 }
 
-.advantage p{
+.advantage p {
     font-size: small;
 }

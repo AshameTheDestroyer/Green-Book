@@ -3,10 +3,10 @@ function advantage(
     $title,
     $text,
     $icon
-):string{
-    return"
+): string {
+    return "
         <div class='advantage'>
-            <div class='icone-container'>
+            <div class='icon-container'>
                 <h1 class='$icon'></h1>
             </div>
             <div>
