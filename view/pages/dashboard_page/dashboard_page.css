@@ -1,49 +1,70 @@
 .dashboard-page {
-  --padding: 4rem;
+  --padding: min(4rem, 5vw);
   display: flex;
   place-content: start center;
   place-items: start center;
   padding: var(--padding);
 }
 .dashboard-page #table-wrapper {
-  --wrapper-padding: 0.5rem;
   max-width: calc(100vw - var(--padding) * 4);
-  padding-inline: var(--wrapper-padding);
   border-radius: 1rem;
   box-shadow: var(--box-shadow);
 }
-.dashboard-page #table-wrapper .slider #table {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding-top: 2rem;
+.dashboard-page #table-wrapper .slider {
+  --item-padding: 4rem;
+  padding: 0;
 }
-.dashboard-page #table-wrapper .slider #table > header {
+.dashboard-page #table-wrapper .slider table {
+  border-collapse: collapse;
+  margin-inline: calc(-1 * var(--item-padding));
+}
+.dashboard-page #table-wrapper .slider table caption {
   position: sticky;
-  left: calc(var(--item-padding) / 2);
-  place-self: start;
-  margin-inline: calc(var(--item-padding) / 2);
+  left: calc(-1 * var(--item-padding));
+  width: -moz-min-content;
+  width: min-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding-block: 2rem;
 }
-.dashboard-page #table-wrapper .slider #table > main {
-  display: grid;
-  grid-template-columns: repeat(var(--column-count), 1fr);
+.dashboard-page #table-wrapper .slider table caption {
+  margin-inline-start: calc(-1 * var(--item-padding));
+  padding-inline-start: calc(var(--item-padding) * 2);
 }
-.dashboard-page #table-wrapper .slider #table > main > span {
-  padding: 1rem 2rem;
+.dashboard-page #table-wrapper .slider table :is(td, th) {
+  --padding: 3rem;
+  padding: calc(var(--padding) / 2) var(--padding);
 }
-.dashboard-page #table-wrapper .slider #table > main > span[data-heading-cell] {
+.dashboard-page #table-wrapper .slider table :is(td, th):first-child {
+  padding-inline-start: calc(var(--item-padding) * 2);
+}
+.dashboard-page #table-wrapper .slider table :is(td, th):last-child {
+  position: sticky;
+  right: 0;
+  display: flex;
+  gap: 1rem;
+  box-shadow: calc(-1 * var(--box-shadow-thickness)) 1px calc(var(--box-shadow-blurriness) / 2) var(--half-transparent-colour);
+}
+.dashboard-page #table-wrapper .slider table :is(td, th):last-child > button {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: inherit;
+}
+.dashboard-page #table-wrapper .slider table th {
   font-weight: bold;
+  text-align: start;
   color: var(--background-colour);
   background-color: var(--main-colour);
 }
-.dashboard-page #table-wrapper .slider #table > main > span[data-even-cell] {
-  background-color: var(--background-darker-colour);
+.dashboard-page #table-wrapper .slider table tr > td {
+  transition: background-color 250ms;
 }
-.dashboard-page #table-wrapper .slider #table > main > span[data-first-cell] {
-  margin-left: calc(-1 * var(--wrapper-padding) - var(--item-padding));
-  padding-left: calc(var(--wrapper-padding) + var(--item-padding) * 2);
+.dashboard-page #table-wrapper .slider table tr:nth-child(odd) > td {
+  background-color: color-mix(in srgb, var(--background-colour) 90%, black 10%);
 }
-.dashboard-page #table-wrapper .slider #table > main > span[data-last-cell] {
-  margin-right: calc(-1 * var(--wrapper-padding) - var(--item-padding));
-  padding-right: calc(var(--wrapper-padding) + var(--item-padding) * 2);
+.dashboard-page #table-wrapper .slider table tr:nth-child(even) > td {
+  background-color: color-mix(in srgb, var(--background-colour) 80%, black 20%);
+}
+.dashboard-page #table-wrapper .slider table tr:is(:hover, :focus-within) > td {
+  background-color: color-mix(in srgb, var(--background-colour) 70%, black 30%);
 }

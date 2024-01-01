@@ -4,57 +4,57 @@
 <?php include_once("./control/validate_administrator.php") ?>
 
 <?php include_once("./control/fetch_all_books.php") ?>
+<?php include_once("./view/components/slider/slider.php") ?>
 
 <link rel="stylesheet" href="./view/pages/dashboard_page/dashboard_page.css">
 
 <main id="book-dashboard-page" class="dashboard-page">
     <main id="table-wrapper">
         <?php
-        $column_count = count($books[0]);
-
         $cell_headings = "";
-        $book_keys = array_keys($books[0]);
-        foreach ($book_keys as $key) {
-            $is_first_cell = ($book_keys[0] == $key);
-            $is_last_cell = ($book_keys[count($book_keys) - 1] == $key);
-
-            $data_cell = "data-heading-cell";
-            $data_cell .= ($is_first_cell) ? " data-first-cell" : "";
-            $data_cell .= ($is_last_cell) ? " data-last-cell" : "";
-
+        foreach (array_keys($books[0]) as $key) {
             $heading = ucwords(str_replace("_", " ", $key));
-            $cell_headings .= "<span $data_cell>$heading</span>";
+            $cell_headings .= "<th>$heading</th>";
         }
+        $cell_headings .= "<th>Altering</th>";
 
-        $cells = "";
-        $is_even_row = false;
+        $rows = "";
         foreach ($books as $book) {
-            $book_values = array_values($book);
-            foreach ($book_values as $value) {
-                $is_first_cell = ($book_values[0] == $value);
-                $is_last_cell = ($book_values[count($book_values) - 1] == $value);
-
-                $data_cell = ($is_even_row) ? "data-even-cell" : "";
-                $data_cell .= ($is_first_cell) ? " data-first-cell" : "";
-                $data_cell .= ($is_last_cell) ? " data-last-cell" : "";
-
-                $cells .= "<span $data_cell>$value</span>";
+            $rows .= "<tr>";
+            foreach (array_values($book) as $value) {
+                $rows .= "<td>$value</td>";
             }
 
-            $is_even_row ^= true;
+            $altering_buttons = implode(
+                array_map(fn($element) => "
+                    <button 
+                        class=\"simple-button icon-button\"
+                        data-svg-active-colour=\"$element[1]\"
+                        type=\"button\"
+                        title=\"$element[0] Row.\"
+                    >
+                        $element[2]
+                    </button>
+                ", [
+                    ["Read", "information", file_get_contents("./assets/icons/book.svg")],
+                    ["Edit", "required", file_get_contents("./assets/icons/pencil.svg")],
+                    ["Delete", "error", file_get_contents("./assets/icons/cross.svg")],
+                ])
+            );
+
+            $rows .= "
+                    <td>$altering_buttons</td>
+                </tr>
+            ";
         }
 
         echo slider(
             $children = "
-                    <div id=\"table\" style=\"--column-count: $column_count\">
-                        <header>
-                            <h1>Books</h1>
-                        </header>
-                        <main>
-                            $cell_headings
-                            $cells
-                        </main>
-                    </div>
+                    <table>
+                        <caption><h1>Books</h1></caption>
+                        <thead><tr>$cell_headings</tr></thead>
+                        <tbody>$rows</tbody>
+                    </table>
                 ",
         );
         ?>
