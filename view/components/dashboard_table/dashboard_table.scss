@@ -74,6 +74,23 @@
 
                 &>td {
                     transition: background-color 250ms;
+
+                    &[data-is-nulled] {
+                        font-weight: bold;
+                        font-style: italic;
+
+                        color: var(--background-colour);
+
+                        &::after {
+                            content: "NULL";
+
+                            padding: 0.5rem;
+
+                            border-radius: 0.5rem;
+                            box-shadow: var(--box-shadow);
+                            background-color: var(--error-colour);
+                        }
+                    }
                 }
 
                 &:nth-child(odd)>td {
@@ -96,4 +113,11 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+}
+
+#deletion-modal {
+
+    &>form {
+        place-self: end;
+    }
 }

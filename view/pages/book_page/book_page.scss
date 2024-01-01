@@ -99,6 +99,10 @@
                         label {
                             left: 1rem;
                         }
+
+                        input {
+                            width: 10rem;
+                        }
                     }
 
                     &[data-is-open=true] .drop-down-wrapper {

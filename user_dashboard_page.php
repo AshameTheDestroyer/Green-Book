@@ -11,6 +11,7 @@
 <main id="user-dashboard-page" class="dashboard-page">
     <?= dashboard_table(
         $title = "Users",
+        $table_name = "users",
         $table = $users,
     ) ?>
 </main>

@@ -74,6 +74,9 @@
 #book-page > header > form .drop-down#price-drop-down .drop-down-container label {
   left: 1rem;
 }
+#book-page > header > form .drop-down#price-drop-down .drop-down-container input {
+  width: 10rem;
+}
 #book-page > header > form .drop-down#price-drop-down[data-is-open=true] .drop-down-wrapper {
   padding-top: 2rem;
 }

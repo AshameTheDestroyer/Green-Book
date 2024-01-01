@@ -11,6 +11,7 @@
 <main id="genre-dashboard-page" class="dashboard-page">
     <?= dashboard_table(
         $title = "Genres",
+        $table_name = "genres",
         $table = $genres,
     ) ?>
 </main>

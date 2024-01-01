@@ -11,6 +11,7 @@
 <main id="user-dashboard-page" class="dashboard-page">
     <?= dashboard_table(
         $title = "Wishlists",
+        $table_name = "reserved_books",
         $table = $reserved_books,
     ) ?>
 </main>

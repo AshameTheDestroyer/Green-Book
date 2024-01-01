@@ -6,6 +6,7 @@ function modal(
     string $id,
     string $title,
     string $message,
+    string $children = "",
 ): string {
     $crossIcon = file_get_contents("./assets/icons/cross.svg");
 
@@ -20,6 +21,7 @@ function modal(
 
             <h1>$title</h1>
             <p>$message</p>
+            $children
         </div>
     ";
 }

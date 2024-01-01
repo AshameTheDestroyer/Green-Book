@@ -56,6 +56,18 @@
 .dashboard-table .slider table tr > td {
   transition: background-color 250ms;
 }
+.dashboard-table .slider table tr > td[data-is-nulled] {
+  font-weight: bold;
+  font-style: italic;
+  color: var(--background-colour);
+}
+.dashboard-table .slider table tr > td[data-is-nulled]::after {
+  content: "NULL";
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+  background-color: var(--error-colour);
+}
 .dashboard-table .slider table tr:nth-child(odd) > td {
   background-color: color-mix(in srgb, var(--background-colour) 90%, black 10%);
 }
@@ -70,4 +82,8 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+#deletion-modal > form {
+  place-self: end;
 }
