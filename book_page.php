@@ -1,7 +1,7 @@
 <?php include_once("./view/layout/head.php") ?>
 <?php include_once("./view/components/header/header.php") ?>
 
-<?php include_once("./control/fetch_genres.php") ?>
+<?php include_once("./control/fetch_all_genres.php") ?>
 <?php include_once("./view/components/slider/slider.php") ?>
 <?php include_once("./view/components/drop_down/drop_down.php") ?>
 <?php include_once("./view/components/input_field/input_field.php") ?>

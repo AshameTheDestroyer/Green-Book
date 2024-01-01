@@ -7,7 +7,7 @@ $dashboards = [
 ];
 ?>
 
-<?php include_once("./control/fetch_genres.php") ?>
+<?php include_once("./control/fetch_all_genres.php") ?>
 <?php include_once("./view/components/slider/slider.php") ?>
 
 <div class="fragment" data-create-portal="body" data-portal-index="0">
