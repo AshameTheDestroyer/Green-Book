@@ -1,0 +1,10 @@
+.advantages{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 60px 40px;
+}
+@media (max-width: 720px) {    
+    #home-page{
+        padding: 2rem !important;
+    }
+}

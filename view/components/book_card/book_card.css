@@ -1,0 +1,103 @@
+  .book-card {
+    --card-padding: 1rem;
+    position: relative;
+    min-width: 20rem;
+    aspect-ratio: 13/16;
+    border-radius: 1.5rem;
+    background-color: var(--background-darker-colour);
+    box-shadow: var(--box-shadow);
+    transition: transform 250ms;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .book-card > form {
+    display: none;
+  }
+  .book-card > header {
+    position: absolute;
+    top: var(--card-padding);
+    inset-inline: var(--card-padding);
+    display: flex;
+    place-content: center space-between;
+    place-items: center space-between;
+    z-index: 1;
+  }
+  .book-card > header > p {
+    font-weight: bold;
+    position: relative;
+    top: calc(-1 * var(--card-padding));
+    left: calc(-1 * var(--card-padding));
+    padding: calc(var(--card-padding) * 3 / 4);
+    color: var(--background-colour);
+    border-bottom-right-radius: 1.5rem;
+    background-color: var(--main-colour);
+  }
+  .book-card > header .star-displayer {
+    display: grid;
+    z-index: 1;
+  }
+  .book-card > header .star-displayer > div {
+    display: flex;
+    grid-row: 1;
+    grid-column: 1;
+  }
+  .book-card > header .star-displayer > div > span {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-inline: -0.3rem;
+    overflow: hidden;
+  }
+  .book-card > header .star-displayer > div > span > svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: var(--gray-colour);
+  }
+  .book-card > header .star-displayer > div > span[data-is-half=true] {
+    width: 1.25rem;
+  }
+  .book-card > header .star-displayer > div > span:first-child {
+    margin-left: 0;
+  }
+  .book-card > header .star-displayer > div > span:last-child {
+    margin-right: 0;
+  }
+  .book-card > header .star-displayer > div:last-child > span svg {
+    fill: var(--warning-colour) !important;
+  }
+  .book-card > figure {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .book-card > figure > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .book-card > figure > img:first-child {
+    width: calc(100% + 2rem);
+    height: calc(100% + 2rem);
+    filter: blur(10px) brightness(80%);
+  }
+  .book-card > figure > img:last-child {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  .book-card > figure::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(transparent, var(--quarter-transparent-colour));
+  }
+  .book-card > figcaption {
+    position: absolute;
+    bottom: var(--card-padding);
+    left: var(--card-padding);
+    color: var(--background-colour);
+  }
+  .book-card:is(:hover, :focus-within) {
+    transform: scale(1.02);
+  }
