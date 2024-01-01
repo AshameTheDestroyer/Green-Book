@@ -23,15 +23,15 @@ function input_field(
     $required = (!$optional) ? "required" : "";
     $dataIsRequired = (!$optional) ? "data-is-required" : "";
     $dataIsFileInput = ($type == "file") ? "data-is-file-input" : "";
-    $value = ($value != null) ? "value=\"$value\"" : "";
+    $value = ($value !== null) ? "value=\"$value\"" : "";
     $pattern = ($pattern != null) ? "pattern=\"$pattern\"" : "";
     $pattern_message = ($pattern_message != null) ? "title=\"$pattern_message\"" : "";
-    $minimum = ($minimum != null) ? "min=\"$minimum\"" : "";
-    $maximum = ($maximum != null) ? "max=\"$maximum\"" : "";
-    $step = ($step != null) ? "step=\"$step\"" : "";
+    $minimum = ($minimum !== null) ? "min=\"$minimum\"" : "";
+    $maximum = ($maximum !== null) ? "max=\"$maximum\"" : "";
+    $step = ($step !== null) ? "step=\"$step\"" : "";
     $accept = ($accept != null) ? "accept=\"$accept\"" : "";
-    $minimum_length = ($minimum_length != null) ? "minlength=\"$minimum_length\"" : "";
-    $maximum_length = ($maximum_length != null) ? "maxlength=\"$maximum_length\"" : "";
+    $minimum_length = ($minimum_length !== null) ? "minlength=\"$minimum_length\"" : "";
+    $maximum_length = ($maximum_length !== null) ? "maxlength=\"$maximum_length\"" : "";
 
     $label = ($type != "file") ? "
             <label for=\"{$id}-input\">$title</label>

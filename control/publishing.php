@@ -71,6 +71,7 @@ if ($book_to_edit_id != null) {
     $query = "
         UPDATE books SET
         title='$title', author='$author', price='$price', page_count='$page_count', rating='$rating'
+        WHERE id = $book_to_edit_id
     ";
 } else {
     $query = "
