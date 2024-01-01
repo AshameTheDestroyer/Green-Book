@@ -1,12 +1,20 @@
 <?php include_once("./view/layout/head.php") ?>
 <?php include_once("./view/components/header/header.php") ?>
 
-<?php include_once("./control/validate_administrator.php"); ?>
+<?php include_once("./control/validate_administrator.php") ?>
 
-<link rel="stylesheet" href="./view/pages/book_dashboard_page/book_dashboard_page.css">
+<?php include_once("./control/fetch_all_books.php") ?>
+<?php include_once("./view/components/dashboard_table/dashboard_table.php") ?>
 
-<main id="book-dashboard-page">
+<link rel="stylesheet" href="./view/pages/dashboard_page/dashboard_page.css">
 
+<main id="book-dashboard-page" class="dashboard-page">
+    <?= dashboard_table(
+        $title = "Books",
+        $table_name = "books",
+        $table = $books,
+        $edit_page = "./publishing_page.php",
+    ) ?>
 </main>
 
 <?php include_once("./view/components/footer/footer.php") ?>

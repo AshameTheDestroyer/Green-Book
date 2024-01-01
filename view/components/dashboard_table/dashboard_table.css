@@ -1,0 +1,92 @@
+.dashboard-table {
+  max-width: calc(100vw - var(--padding) * 4);
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow);
+}
+.dashboard-table .slider {
+  --item-padding: 4rem;
+  padding: 0;
+}
+.dashboard-table .slider table {
+  border-collapse: collapse;
+  margin: 0 !important;
+}
+.dashboard-table .slider table caption {
+  position: sticky;
+  left: calc(-1 * var(--item-padding));
+  width: -moz-min-content;
+  width: min-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-inline: calc(-1 * var(--item-padding));
+  padding-inline: calc(var(--item-padding) * 2);
+  padding-block: 2rem;
+}
+.dashboard-table .slider table :is(td, th) {
+  --padding: 2rem;
+  padding: calc(var(--padding) / 2) var(--padding);
+}
+.dashboard-table .slider table :is(td, th):first-child {
+  margin-left: calc(-1 * var(--item-padding));
+  padding-left: var(--item-padding);
+}
+.dashboard-table .slider table :is(td, th):nth-last-child(2) {
+  padding-right: calc(var(--item-padding) * 2);
+}
+.dashboard-table .slider table :is(td, th):last-child {
+  position: sticky;
+  right: 0;
+  display: flex;
+  gap: 1rem;
+  margin-right: calc(-1 * var(--item-padding));
+  padding-right: var(--item-padding);
+  box-shadow: calc(-1 * var(--box-shadow-thickness)) 1px calc(var(--box-shadow-blurriness) / 2) var(--half-transparent-colour);
+}
+.dashboard-table .slider table :is(td, th):last-child > button {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: inherit;
+}
+.dashboard-table .slider table th {
+  font-weight: bold;
+  text-align: start;
+  color: var(--background-colour);
+  background-color: var(--main-colour);
+}
+.dashboard-table .slider table tr > td {
+  transition: background-color 250ms;
+}
+.dashboard-table .slider table tr > td[data-is-nulled] {
+  font-weight: bold;
+  font-style: italic;
+  color: var(--background-colour);
+}
+.dashboard-table .slider table tr > td[data-is-nulled]::after {
+  content: "NULL";
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+  background-color: var(--error-colour);
+}
+.dashboard-table .slider table tr:nth-child(odd) > td {
+  background-color: color-mix(in srgb, var(--background-colour) 90%, black 10%);
+}
+.dashboard-table .slider table tr:nth-child(even) > td {
+  background-color: color-mix(in srgb, var(--background-colour) 80%, black 20%);
+}
+.dashboard-table .slider table tr:is(:hover, :focus-within) > td {
+  background-color: color-mix(in srgb, var(--background-colour) 70%, black 30%);
+}
+
+.dashboard-message {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.modal > form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  place-self: end;
+}

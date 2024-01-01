@@ -1,12 +1,19 @@
 <?php include_once("./view/layout/head.php") ?>
 <?php include_once("./view/components/header/header.php") ?>
 
-<?php include_once("./control/validate_administrator.php"); ?>
+<?php include_once("./control/validate_administrator.php") ?>
 
-<link rel="stylesheet" href="./view/pages/wishlist_dashboard_page/wishlist_dashboard_page.css">
+<?php include_once("./control/fetch_all_reserved_books.php") ?>
+<?php include_once("./view/components/dashboard_table/dashboard_table.php") ?>
 
-<main id="wishlist-dashboard-page">
+<link rel="stylesheet" href="./view/pages/dashboard_page/dashboard_page.css">
 
+<main id="user-dashboard-page" class="dashboard-page">
+    <?= dashboard_table(
+        $title = "Wishlists",
+        $table_name = "reserved_books",
+        $table = $reserved_books,
+    ) ?>
 </main>
 
 <?php include_once("./view/components/footer/footer.php") ?>

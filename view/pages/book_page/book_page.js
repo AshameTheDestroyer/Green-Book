@@ -26,33 +26,50 @@ const
 fetchBooks("");
 searchInput.addEventListener("keyup", e => Debounce(fetchBooks, 250)(e.target.value));
 bookForm.addEventListener("change", e => (e.target != searchInput) && fetchBooks(searchInput.value));
+bookForm.querySelector("button[type=reset]").addEventListener("click", _e => fetchBooks(""));
 
-function fetchBooks(searchTerm) {
+function fetchBooks(searchTerm, paginationIndex = 1) {
     searchTerm = searchTerm.trim();
 
     const xmlHttp = new XMLHttpRequest();
     xmlHttp.addEventListener("readystatechange", _e => {
         if (xmlHttp.readyState != 4 || xmlHttp.status != 200) { return; }
 
-        bookPageContent.innerHTML = xmlHttp.responseText ?? "<h3 style=\"color:#00e25e\">No result</h3>";
+        bookPageContent.innerHTML = xmlHttp.responseText;
+        const slider = bookPageContent.querySelector(".slider");
+
+        bookPageContent.querySelector("#pagination-button-displayer")?.addEventListener("click", e => {
+            const button = e.target.closest("button");
+            if (button == null) { return; }
+
+            if (button.classList.contains("pagination-step-button")) {
+                switch (button.dataset["stepType"]) {
+                    case "first": fetchBooks(searchTerm, 1); return;
+                    case "previous": fetchBooks(searchTerm, paginationIndex - 1); return;
+                    case "next": fetchBooks(searchTerm, paginationIndex + 1); return;
+                    case "last": fetchBooks(searchTerm, slider.children.length); return;
+                }
+            }
+
+            fetchBooks(searchTerm, Number(button.textContent));
+        });
+
+        slider?.querySelector(".emphasized-button").scrollIntoView();
     });
 
-    if (searchInput == "") {
-        xmlHttp.open("GET", "control/fetch_books.php", true);
-    } else {
-        const searchParams = new URLSearchParams({
-            "search-term": searchTerm,
-            title: titleCheckbox.checked,
-            author: authorCheckbox.checked,
-            "min-price": minimumPriceInput.value.replace(".", "_"),
-            "max-price": maximumPriceInput.value.replace(".", "_"),
-            genres: genreCheckboxes
-                .filter(checkbox => checkbox.checked)
-                .map(checkbox => checkbox.name)
-                .join(","),
-        });
-        xmlHttp.open("GET", "control/fetch_books.php?" + searchParams.toString(), true);
-    }
+    const searchParams = new URLSearchParams({
+        "search-term": searchTerm,
+        title: titleCheckbox.checked,
+        author: authorCheckbox.checked,
+        "min-price": minimumPriceInput.value.replace(".", "_"),
+        "max-price": maximumPriceInput.value.replace(".", "_"),
+        genres: genreCheckboxes
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.name)
+            .join(","),
+        "pagination-index": paginationIndex,
+    });
 
+    xmlHttp.open("GET", "control/fetch_books.php?" + searchParams.toString(), true);
     xmlHttp.send();
 }

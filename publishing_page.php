@@ -1,11 +1,29 @@
 <?php include_once("./view/layout/head.php") ?>
 <?php include_once("./view/components/header/header.php") ?>
 
-<?php include_once("./control/validate_administrator.php"); ?>
+<?php include_once("./control/validate_administrator.php") ?>
 
 <?php
 global $publishingError;
 global $publishingErrorMessage;
+
+$book_id = filter_input(INPUT_GET, "edit-id", FILTER_SANITIZE_STRING);
+$book;
+$book_genres;
+if ($book_id != null) {
+    $query = "SELECT * FROM books WHERE id = '$book_id' LIMIT 1";
+    $result = $connection->execute_query($query);
+    $book = $result->fetch_all(MYSQLI_ASSOC)[0];
+
+    $query = "
+        SELECT genres.id, genres.title FROM books_to_genres
+        JOIN genres ON books_to_genres.genre_id = genres.id
+        JOIN books ON books_to_genres.book_id = books.id
+        WHERE books.id = $book_id
+    ";
+    $result = $connection->execute_query($query);
+    $book_genres = $result->fetch_all(MYSQLI_ASSOC);
+}
 ?>
 
 <?php include_once("./control/publishing.php") ?>
@@ -22,11 +40,15 @@ global $publishingErrorMessage;
         <h1>Book Publishing</h1>
 
         <main>
+            <?php if ($book_id != null): ?>
+                <input name="book-to-edit-id" type="hidden" value="<?= $book_id ?>" />
+            <?php endif ?>
+
             <?= input_field(
                 $name = "title",
                 $title = "Title",
                 $type = "text",
-                $value = null,
+                $value = $book["title"],
                 $pattern = null,
                 $pattern_message = null,
                 $id = null,
@@ -42,7 +64,7 @@ global $publishingErrorMessage;
                 $name = "author",
                 $title = "Author",
                 $type = "text",
-                $value = null,
+                $value = $book["author"],
                 $pattern = null,
                 $pattern_message = null,
                 $id = null,
@@ -58,7 +80,7 @@ global $publishingErrorMessage;
                 $name = "price",
                 $title = "Price",
                 $type = "number",
-                $value = "10.99",
+                $value = $book["price"] ?? "10.99",
                 $pattern = null,
                 $pattern_message = null,
                 $id = null,
@@ -71,7 +93,7 @@ global $publishingErrorMessage;
                 $name = "page-count",
                 $title = "Page Count",
                 $type = "number",
-                $value = "10",
+                $value = $book["page_count"] ?? "10",
                 $pattern = null,
                 $pattern_message = null,
                 $id = null,
@@ -83,7 +105,7 @@ global $publishingErrorMessage;
                 $name = "rating",
                 $title = "Rating",
                 $type = "number",
-                $value = "5",
+                $value = $book["rating"] ?? "5",
                 $pattern = null,
                 $pattern_message = null,
                 $id = null,
@@ -96,7 +118,7 @@ global $publishingErrorMessage;
                 $genre_checkboxes .= checkbox_field(
                     $name = $genre["title"],
                     $title = ucwords($genre["title"]),
-                    $checked = false,
+                    $checked = ($book_genres != null) ? in_array($genre, $book_genres) : false,
                     $optional = true,
                     $children = file_get_contents("./assets/icons/check.svg"),
                 );
@@ -113,36 +135,38 @@ global $publishingErrorMessage;
             );
             ?>
 
-            <section id="file-input-container" class="button-displayer">
-                <?= input_field(
-                    $name = "cover",
-                    $title = file_get_contents("./assets/icons/label.svg") . "<p>Upload Cover</p>",
-                    $type = "file",
-                    $value = null,
-                    $pattern = null,
-                    $pattern_message = null,
-                    $id = null,
-                    $optional = false,
-                    $minimum = null,
-                    $maximum = null,
-                    $step = null,
-                    $accept = "image/*",
-                ) ?>
-                <?= input_field(
-                    $name = "pdf",
-                    $title = file_get_contents("./assets/icons/book.svg") . "<p>Upload PDF</p>",
-                    $type = "file",
-                    $value = null,
-                    $pattern = null,
-                    $pattern_message = null,
-                    $id = null,
-                    $optional = false,
-                    $minimum = null,
-                    $maximum = null,
-                    $step = null,
-                    $accept = "application/msword, text/plain, application/pdf",
-                ) ?>
-            </section>
+            <?php if ($book_id == null): ?>
+                <section id="file-input-container" class="button-displayer">
+                    <?= input_field(
+                        $name = "cover",
+                        $title = file_get_contents("./assets/icons/label.svg") . "<p>Upload Cover</p>",
+                        $type = "file",
+                        $value = null,
+                        $pattern = null,
+                        $pattern_message = null,
+                        $id = null,
+                        $optional = false,
+                        $minimum = null,
+                        $maximum = null,
+                        $step = null,
+                        $accept = "image/*",
+                    ) ?>
+                    <?= input_field(
+                        $name = "pdf",
+                        $title = file_get_contents("./assets/icons/book.svg") . "<p>Upload PDF</p>",
+                        $type = "file",
+                        $value = null,
+                        $pattern = null,
+                        $pattern_message = null,
+                        $id = null,
+                        $optional = false,
+                        $minimum = null,
+                        $maximum = null,
+                        $step = null,
+                        $accept = "application/msword, text/plain, application/pdf",
+                    ) ?>
+                </section>
+            <?php endif ?>
         </main>
 
         <section class="button-displayer">

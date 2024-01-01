@@ -7,7 +7,7 @@ $dashboards = [
 ];
 ?>
 
-<?php include_once("./control/fetch_genres.php") ?>
+<?php include_once("./control/fetch_all_genres.php") ?>
 <?php include_once("./view/components/slider/slider.php") ?>
 
 <div class="fragment" data-create-portal="body" data-portal-index="0">
@@ -23,14 +23,14 @@ $dashboards = [
             </figure>
 
             <section class="button-displayer" data-grid-repeat="<?= ($_SESSION["user"]["is_administrator"]) ? 4 : 3 ?>">
-                <button class="icon-button simple-button" type="button" title="Favourites"
+                <button class="icon-button simple-button" type="button" title="Ratings"
                     data-svg-active-colour="warning">
                     <?php include_once("./assets/icons/star.svg") ?>
                 </button>
                 <button class="icon-button simple-button" type="button" title="Cart">
                     <?php include_once("./assets/icons/cart.svg") ?>
                 </button>
-                <button class="icon-button simple-button" type="button" title="Profile"
+                <button class="icon-button simple-button" type="button" title="Account"
                     data-svg-active-colour="information">
                     <a href="./signing_page.php">
                         <?php include_once("./assets/icons/user.svg") ?>

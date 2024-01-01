@@ -1,0 +1,9 @@
+.dashboard-page {
+    --padding: min(4rem, 5vw);
+
+    display: flex;
+    place-content: center;
+    place-items: center;
+
+    padding: var(--padding);
+}
