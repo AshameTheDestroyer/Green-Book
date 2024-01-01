@@ -13,6 +13,7 @@
         $title = "Books",
         $table_name = "books",
         $table = $books,
+        $edit_page = "./publishing_page.php",
     ) ?>
 </main>
 

@@ -84,6 +84,9 @@
   gap: 2rem;
 }
 
-#deletion-modal > form {
+.modal > form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   place-self: end;
 }

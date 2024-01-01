@@ -9,8 +9,8 @@ function dashboard_table(
     string $title,
     string $table_name,
     array $table,
+    string $edit_page,
 ): string {
-    $edit_id = filter_input(INPUT_GET, "edit-id", FILTER_SANITIZE_STRING);
     $delete_id = filter_input(INPUT_GET, "delete-id", FILTER_SANITIZE_STRING);
 
     if (count($table) == 0) {
@@ -33,7 +33,7 @@ function dashboard_table(
     foreach ($table as $field) {
         $rows .= "<tr>";
         foreach ($field as $value) {
-            $data_is_nulled = ($value === null) ? "data-is-nulled" : "";
+            $data_is_nulled = ($value == null) ? "data-is-nulled" : "";
             $rows .= "<td $data_is_nulled>$value</td>";
         }
 
@@ -43,16 +43,16 @@ function dashboard_table(
                     class=\"simple-button icon-button altering-button\"
                     data-svg-active-colour=\"$element[1]\"
                     type=\"button\"
-                    title=\"$element[0]s row.\"
+                    title=\"$element[0] row.\"
                     data-action-type=\"$element[0]\"
                     data-alter-row-id=\"{$field["id"]}\"
                 >
-                    <a href=\"{$_SERVER["PHP_SELF"]}?$element[0]-id={$field["id"]}\">$element[2]</a>
+                    <a href=\"$element[3]\">$element[2]</a>
                 </button>
             ", [
                 // ["read", "warning", file_get_contents("./assets/icons/book.svg")],
-                ["edit", "information", file_get_contents("./assets/icons/pencil.svg")],
-                ["delete", "error", file_get_contents("./assets/icons/cross.svg")],
+                ["edit", "information", file_get_contents("./assets/icons/pencil.svg"), "$edit_page?edit-id={$field["id"]}"],
+                ["delete", "error", file_get_contents("./assets/icons/cross.svg"), "{$_SERVER["PHP_SELF"]}?delete-id={$field["id"]}"],
             ])
         );
 

@@ -14,20 +14,31 @@ labelContainerButtons.forEach(button => button.addEventListener("click", e =>
 ));
 
 const fileInputFields = [...document.querySelectorAll(".input-field[data-is-file-input]")];
-fileInputFields.forEach(inputField =>
-    inputField.querySelector("input").addEventListener("change", e => {
-        const button = inputField.querySelector("button");
+fileInputFields.forEach(inputField => {
+    const input = inputField.querySelector("input");
 
-        if (e.target.value.trim() != "") {
-            inputField.setAttribute("data-uploaded-file", e.target.value.trim());
-            button.classList.add("emphasized-button");
-            return;
-        }
+    input.addEventListener("change", _e => updateFileInputField(inputField));
+    updateFileInputField(inputField);
 
-        inputField.removeAttribute("data-uploaded-file");
-        button.classList.remove("emphasized-button");
-    }),
-);
+    input.value = input.defaultValue;
+});
+
+function updateFileInputField(inputField) {
+    const
+        input = inputField.querySelector("input"),
+        button = inputField.querySelector("button"),
+        value = input.value?.trim() ?? "",
+        defaultValue = input.defaultValue?.trim() ?? "";
+
+    if (value != "" || defaultValue != "") {
+        inputField.setAttribute("data-uploaded-file", value);
+        button.classList.add("emphasized-button");
+        return;
+    }
+
+    inputField.removeAttribute("data-uploaded-file");
+    button.classList.remove("emphasized-button");
+}
 
 const forms = [...document.querySelectorAll("form")];
 forms.forEach(form => form.addEventListener("reset", _e =>

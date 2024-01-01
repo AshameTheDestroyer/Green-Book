@@ -1,5 +1,6 @@
 .modal {
   --padding: 2rem;
+  --close-button-size: 3rem;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -8,6 +9,7 @@
   flex-direction: column;
   gap: 2rem;
   padding: var(--padding);
+  padding-inline: calc(var(--padding) + var(--close-button-size) - 2rem);
   border-radius: 1rem;
   box-shadow: var(--box-shadow);
   background-color: var(--background-colour);
@@ -36,7 +38,7 @@
   transform: translate(25%, -25%);
 }
 .modal .modal-close-button-container > button {
-  --size: 3rem;
+  --size: var(--close-button-size);
 }
 .modal.modal-hidden {
   display: none;
