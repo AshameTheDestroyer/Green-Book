@@ -23,10 +23,10 @@ $dashboards = [
             </figure>
 
             <section class="button-displayer" data-grid-repeat="<?= ($_SESSION["user"]["is_administrator"]) ? 4 : 3 ?>">
-                <button class="icon-button simple-button" type="button" title="Ratings"
+                <!-- <button class="icon-button simple-button" type="button" title="Ratings"
                     data-svg-active-colour="warning">
                     <?php include_once("./assets/icons/star.svg") ?>
-                </button>
+                </button> -->
                 <button class="icon-button simple-button" type="button" title="Cart">
                     <a href="./cart_page.php">
                         <?php include_once("./assets/icons/cart.svg") ?>
