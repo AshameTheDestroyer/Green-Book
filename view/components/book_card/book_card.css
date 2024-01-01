@@ -1,8 +1,9 @@
 .book-card {
+  font-size: 1rem;
   --card-padding: 1rem;
   position: relative;
-  min-width: 20rem;
-  aspect-ratio: 13/16;
+  height: 100%;
+  aspect-ratio: 15 / 16;
   border-radius: 1.5rem;
   background-color: var(--background-darker-colour);
   box-shadow: var(--box-shadow);

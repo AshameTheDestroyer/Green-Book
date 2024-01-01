@@ -115,8 +115,8 @@ $connection->close();
 <main id="book-displayer">
     <?php foreach ($books as $book): ?>
         <div class="book-card" tabindex="0" onclick="this.querySelector('form>button').click();">
-            <form action="./book_page.php" method="GET" aria-hidden>
-                <input type="hidden" name="book_id" value="<?= $book["id"] ?>" />
+            <form action="./book_display_page.php" method="GET" aria-hidden>
+                <input type="hidden" name="book-id" value="<?= $book["id"] ?>" />
                 <button type="submit"></button>
             </form>
 

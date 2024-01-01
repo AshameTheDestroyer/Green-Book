@@ -10,6 +10,7 @@ function dashboard_table(
     string $table_name,
     array $table,
     string $edit_page,
+    bool $no_edit_button = false,
 ): string {
     $delete_id = filter_input(INPUT_GET, "delete-id", FILTER_SANITIZE_STRING);
 
@@ -38,7 +39,7 @@ function dashboard_table(
         }
 
         $altering_buttons = implode(
-            array_map(fn($element) => "
+            array_map(fn($element) => ($element[0] == "edit" && $no_edit_button) ? "" : "
                 <button
                     class=\"simple-button icon-button altering-button\"
                     data-svg-active-colour=\"$element[1]\"

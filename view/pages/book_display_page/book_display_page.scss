@@ -1,0 +1,223 @@
+#book-display-page {
+    --padding: 4rem;
+
+    width: calc(100% - var(--padding) * 2);
+
+    display: flex;
+    gap: 4rem;
+
+    padding: var(--padding);
+
+    .book-card {
+        --card-padding: 1rem;
+
+        position: relative;
+        height: calc(100vh - var(--header-height) - var(--padding) * 2);
+        min-height: 30rem;
+        aspect-ratio: 13 / 16;
+
+        border-radius: 1.5rem;
+        background-color: var(--background-darker-colour);
+        box-shadow: var(--box-shadow);
+
+        transition: transform 250ms;
+
+        overflow: hidden;
+
+        cursor: pointer;
+
+        &>form {
+            display: none;
+        }
+
+        &>header {
+            position: absolute;
+            top: var(--card-padding);
+            inset-inline: var(--card-padding);
+
+            display: flex;
+            place-content: center space-between;
+            place-items: center space-between;
+
+            z-index: 1;
+
+            &>p {
+                font-weight: bold;
+
+                position: relative;
+                top: calc(-1 * var(--card-padding));
+                left: calc(-1 * var(--card-padding));
+                width: 7ch;
+
+                padding: calc(var(--card-padding) * 3 / 4);
+
+                color: var(--background-colour);
+                border-bottom-right-radius: 1.5rem;
+                background-color: var(--main-colour);
+            }
+
+            .star-displayer {
+                display: grid;
+
+                z-index: 1;
+
+                &>div {
+                    display: flex;
+
+                    grid-row: 1;
+                    grid-column: 1;
+
+                    &>span {
+                        $margin-inline: -0.3rem;
+                        $size: 2.5rem;
+
+                        width: $size;
+                        height: $size;
+
+                        margin-inline: $margin-inline;
+
+                        &>svg {
+                            width: $size;
+                            height: $size;
+
+                            fill: var(--gray-colour);
+                            stroke: var(--background-colour);
+                        }
+
+                        &[data-is-half=true] {
+                            width: calc($size / 2);
+                        }
+
+                        &:first-child {
+                            margin-left: 0;
+                        }
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
+
+                    &:first-child>span>svg {
+                        filter: drop-shadow(3px 3px 3px black);
+                    }
+
+                    &:last-child>span {
+                        overflow: hidden;
+
+                        z-index: 1;
+
+                        &>svg {
+                            fill: var(--warning-colour) !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        &>figure {
+            $size: 100%;
+
+            position: relative;
+            width: $size;
+            height: $size;
+
+            &>img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                &:first-child {
+                    $size: calc(100% + 2rem);
+
+                    width: $size;
+                    height: $size;
+
+                    filter: blur(10px) brightness(80%);
+                }
+
+                &:last-child {
+                    $size: 100%;
+
+                    width: $size;
+                    height: $size;
+
+                    object-fit: contain;
+                }
+            }
+
+            &::after {
+                content: "";
+
+                position: absolute;
+                inset: 0;
+
+                background-image: linear-gradient(transparent, var(--quarter-transparent-colour));
+            }
+        }
+
+        &>figcaption {
+            position: absolute;
+            bottom: var(--card-padding);
+            left: var(--card-padding);
+
+            color: var(--background-colour);
+        }
+
+        &:is(:hover, :focus-within) {
+            transform: scale(1.02);
+        }
+    }
+
+    &>section {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        &>div {
+            width: min-content;
+            width: fit-content;
+
+            display: flex;
+            place-content: center;
+            place-items: center;
+            gap: 2rem;
+
+            &:first-child {
+                font-weight: bold;
+                font-size: xx-large;
+            }
+
+            &#genre-displayer {
+
+                &>div:not(:first-child) {
+                    padding: 0.5rem 1rem;
+
+                    border-radius: 1rem;
+                    box-shadow: var(--box-shadow);
+                    color: var(--background-colour);
+                    background-color: var(--main-colour);
+                }
+            }
+        }
+
+        &>form {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+    }
+
+    #book-display-message {
+        flex-grow: 1;
+        display: flex;
+        place-content: center;
+        place-items: center;
+
+        &>section {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+    }
+}

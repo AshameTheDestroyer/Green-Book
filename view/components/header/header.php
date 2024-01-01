@@ -28,7 +28,9 @@ $dashboards = [
                     <?php include_once("./assets/icons/star.svg") ?>
                 </button>
                 <button class="icon-button simple-button" type="button" title="Cart">
-                    <?php include_once("./assets/icons/cart.svg") ?>
+                    <a href="./cart_page.php">
+                        <?php include_once("./assets/icons/cart.svg") ?>
+                    </a>
                 </button>
                 <button class="icon-button simple-button" type="button" title="Account"
                     data-svg-active-colour="information">
